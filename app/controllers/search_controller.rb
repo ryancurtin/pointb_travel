@@ -1,5 +1,10 @@
 class SearchController < ApplicationController
   def results
-   @search
+    location = params[:location].split(',')
+    
+    city, country = location[0], location[1]
+   
+   
+   
   end
 end
