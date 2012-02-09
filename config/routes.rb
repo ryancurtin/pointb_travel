@@ -12,6 +12,8 @@ Hostelapp::Application.routes.draw do
 
   get "pages/about"
   
+  get "pages/new_search"
+  
   root :to => "pages#home"
 
  

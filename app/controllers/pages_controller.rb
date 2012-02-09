@@ -11,6 +11,9 @@ class PagesController < ApplicationController
     @title = "About"
   end
   
+  def new_serach
+    @title = "Search Again"
+  end
   
   
   

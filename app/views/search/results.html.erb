@@ -2,17 +2,21 @@
 
 
 <h1>You searched for:  <%= params[:location] %></h1>
-<h3>There are <%= @response.to_a.count("#{@city}") %> places to stay <%= "#{@city}" %></h3>
 
-  
+<% if @response.nil? %>
+  <%= render 'pages/new_search' %>
+<% else %>
 
-  	<!-- <p><% @count.times do |i| %></p>
-  	    <% property = @response['properties']['property'][i] %>
-  	    <%= property['dest'] if property['city'] == @city %>
-  	    <% end %> -->
+
+<h3>There are <%= @response.to_a.count("#{@city}") %>  places to stay <%= "#{@city}" %></h3>
+
+
+
+
 <!-- Here is the loop that produces the results which I will then submit to the API to get further details -->
    <% property = @response['properties']['property'] %>
    <p><% property.each do |i| %></p>
    <%= i['dest'] if i['city'] == @city %>
    <% end %>
 
+<% end %>
