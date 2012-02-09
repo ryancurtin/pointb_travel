@@ -50,6 +50,7 @@ GEM
       railties (>= 3.2.0.beta, < 5.0)
       thor (~> 0.14)
     json (1.6.5)
+    libxml-ruby (2.2.2)
     mail (2.4.1)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -110,6 +111,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   httparty
   jquery-rails
+  libxml-ruby
   rails (= 3.2.0)
   sass-rails (~> 3.2.3)
   sqlite3
