@@ -1,14 +1,13 @@
 
 
 
-<h1>You searched for:  <%= params[:location] %></h1>
-
-<% if @response.nil? %>
+<% if @response.blank? %>
   <%= render 'pages/new_search' %>
+
 <% else %>
 
-
-<h3>There are <%= @response.count %>  places to stay <%= @response.first.city %></h3>
+<h2>You searched for <%= params[:location] %>
+<h3>There are <%= @response.count %>  places to stay <%= @response.first.city if @response.blank? == false %></h3>
 
    <p><% @response.each do |hotel| %></p>
    <%= hotel[:name] %>

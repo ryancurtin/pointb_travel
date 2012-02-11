@@ -3463,6 +3463,9 @@ input#searchbutton {
 
 }
 
+#searcherror {
+	color: red;
+}
 
 
 
