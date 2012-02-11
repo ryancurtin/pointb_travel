@@ -8,15 +8,10 @@
 <% else %>
 
 
-<h3>There are <%= @response.to_a.count("#{@city}") %>  places to stay <%= "#{@city}" %></h3>
+<h3>There are <%= @response.count %>  places to stay <%= @response.first.city %></h3>
 
-
-
-
-<!-- Here is the loop that produces the results which I will then submit to the API to get further details -->
-   <% property = @response['properties']['property'] %>
-   <p><% property.each do |i| %></p>
-   <%= i['dest'] if i['city'] == @city %>
+   <p><% @response.each do |hotel| %></p>
+   <%= hotel[:name] %>
    <% end %>
 
 <% end %>

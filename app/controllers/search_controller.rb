@@ -3,8 +3,9 @@ class SearchController < ApplicationController
     if params[:location].include? ","
       location = params[:location].split(',')
       location[1] = location[1].strip
-      @city, @country = location[0], location[1]
-      @response = HTTParty.get("http://www.instantworldbooking.com/xml/files/#{@country}.xml")    
+      city, country = location[0], location[1]
+      @response = Hotel.where(:country => country, :city=> city)
+      #@response = HTTParty.get("http://www.instantworldbooking.com/xml/files/#{@country}.xml")    
     else
       @response = nil
       
