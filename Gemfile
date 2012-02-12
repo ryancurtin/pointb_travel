@@ -40,5 +40,7 @@ gem 'jquery-rails'
 # XML Parsing
 gem 'httparty'
 gem 'libxml-ruby'
+gem 'nokogiri'
+gem 'curl'
 
 

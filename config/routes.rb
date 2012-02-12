@@ -2,7 +2,10 @@ Hostelapp::Application.routes.draw do
 
   get "search/results"
   
+  get "search/postresults"
+  
   post "search/results"
+  
 
   resources :hotels
 
@@ -16,5 +19,6 @@ Hostelapp::Application.routes.draw do
   
   root :to => "pages#home"
 
+  
  
 end
