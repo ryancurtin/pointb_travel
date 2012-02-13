@@ -48,6 +48,7 @@ class SearchController < ApplicationController
           
     else
       @response = nil
+      @finalresult = nil
       
     end
 
