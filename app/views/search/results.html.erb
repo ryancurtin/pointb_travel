@@ -12,7 +12,12 @@
    <p><% @response.each do |hotel| %></p>
    <%= hotel[:name] %>
    <% end %>
-<%= @finalresult.body %>
+
+<br />
+
+<%= @conn.class %>
+
+
 <% end %>
 
 
