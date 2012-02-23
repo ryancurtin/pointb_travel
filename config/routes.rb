@@ -6,6 +6,9 @@ Hostelapp::Application.routes.draw do
   
   post "search/results"
   
+  
+  resources :cities
+  
 
   resources :hotels
 

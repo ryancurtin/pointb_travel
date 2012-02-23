@@ -1,6 +1,10 @@
 class PagesController < ApplicationController
   def home
     @title = "Home"
+    @countries = Country.all
+    
+    
+    
   end
 
   def contact

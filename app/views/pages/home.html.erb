@@ -1,12 +1,54 @@
 <!-- <div class="container"> -->
 
+	<script>
+	$('#country').live('change',function() {
+		country_name = $('#country').val();
+		$.getJSON('/cities?country='+country_name, function(data) {
+		   $('#city').empty();
+		   $('#city').append('<option value="0">Please select a city</option>"')
+		   $.each(data, function(key, value) {
+			    $('#city').append('<option value="' + value.name +'">'+  value.name +'</option>');
+		    });
+		});		
+	})
+	</script>
+
    <div class="search">
   
   <div id="searchheading">
    <h1>Where do you want to go?</h1><br /><br /><br />
 
    <form method="get" action="/search/results">
-   <input id="search_name" name="location" placeholder="Enter a location (City, Country)" type="text"/>
+   
+   <label for="country">Country: </label>
+   <select name="country" id="country">
+   <option value="0" selected="selected">Please select a country</option>
+   <% @countries.each do |country| %>	
+   <option value="<%= country.name %>"><%= country.name %></option>
+   <% end %>
+   </select>
+   
+
+   <label for="city">City: </label>
+   <select name="city" id="city">
+   <option value="0" selected="selected">Please select a city</option>
+  
+   </select>
+
+   <label for="nights">Number of Nights: </label>
+   <input name="nights" id="nights" value="3" />
+  
+   <script>
+   $(function() {
+     $( "#date" ).datepicker();
+	 });
+   </script>
+   <label for="date">Start Date: </label>
+   <input name="date" id="date" />
+  
+
+
+
    <input id="searchbutton" name="searchbutton" type="submit" value="Let's Go!">
    </form>
 
