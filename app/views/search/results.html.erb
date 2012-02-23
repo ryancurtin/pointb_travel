@@ -1,3 +1,29 @@
 
 
-<%= @searchresults %>
+<% @searchresults['result']['Properties'].each do |hotel| %>
+<h3><%= hotel['name'] %></h3>
+<br />
+<%= image_tag "#{hotel['images'][0]['url']}" %>
+<br />
+<b>Address:</b> <%= hotel['address1'] %>
+<br />
+<b>Rating:</b> <%= hotel['avgRating'] %>
+<br />
+<b>Dorm Price:</b>  
+  <% if hotel['bedPrices']['cheapestDorm'].nil? %>
+	"N/A"
+  <% else %>
+    <%= hotel['bedPrices']['cheapestDorm']['USD'] %>
+  <% end %>
+<br />
+<b>Private Price:</b>  
+  <% if hotel['bedPrices']['cheapestPrivate'].nil?	%>
+	"N/A"
+  <% else %>
+    <%= hotel['bedPrices']['cheapestPrivate']['USD'] %>
+  <% end %>
+<br />
+
+<b>Description:</b> <%= hotel['shortDescription'] + "..." %>
+<br />
+<% end %>
