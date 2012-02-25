@@ -1,7 +1,10 @@
 
+<%= @date %>
 
 <% @searchresults['result']['Properties'].each do |hotel| %>
-<h3><%= hotel['name'] %></h3>
+<% @hotelnumber = hotel['number'] %>
+<h3><%=link_to "#{hotel['name']}", "/#{@hotelnumber}/results" %> | <%= @hotelnumber %></h3>
+
 <br />
 <%= image_tag "#{hotel['images'][0]['url']}" %>
 <br />

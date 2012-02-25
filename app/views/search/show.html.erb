@@ -1,0 +1,16 @@
+
+<!-- Now I need to chop up the JSON -->
+
+<h1><%=link_to "#{@hoteldetails['result']['propertyName']}", "/#{@hotelnumber}/booking" %></h1>
+<%= image_tag "#{@hoteldetails['result']['propertyImages'][0]['imageURL']}" %>
+<%= image_tag "#{@hoteldetails['result']['propertyImages'][1]['imageURL']}" %>
+<%= image_tag "#{@hoteldetails['result']['propertyImages'][2]['imageURL']}" %>
+
+<h3><%= @hoteldetails['result']['city'] %>, <%= @hoteldetails['result']['city'] %></h3>
+<p>Email:<%= @hoteldetails['result']['email'] %></p>
+<p>Phone: <%= @hoteldetails['result']['tel'] %></p>
+<p>Address: <%= @hoteldetails['result']['address1'] %></p>
+<p>Description:  <%= @hoteldetails['result']['description'] %></p>
+
+
+<%= @date %>

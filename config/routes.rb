@@ -4,7 +4,13 @@ Hostelapp::Application.routes.draw do
   
   get "search/postresults"
   
+  get "/:id/results/" => 'search#show'
+  
   post "search/results"
+  
+  post "/:id/results" => 'search#show'
+  
+  get "/:id/booking" => 'search#booking'
   
   
   resources :cities
