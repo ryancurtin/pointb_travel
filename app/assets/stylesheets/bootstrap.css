@@ -7,6 +7,12 @@
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
+
+
+body {
+	background: url("farmer.png");
+}
+
 article,
 aside,
 details,
@@ -113,12 +119,27 @@ a:hover {
   text-decoration: underline;
 }
 .row {
-  margin-left: -20px;
+
   *zoom: 1;
 }
+
+#bookingresults {
+	background: #f4f4f4;
+}
+
+#highlight {
+	margin-bottom: 10px;
+}
+
+#highlight:hover {
+	background: #00FF00;
+}
+
+
 .row:before, .row:after {
   display: table;
   content: "";
+
 }
 .row:after {
   clear: both;
@@ -130,6 +151,8 @@ a:hover {
 .span1 {
   width: 60px;
 }
+
+
 .span2 {
   width: 140px;
 }
@@ -163,6 +186,16 @@ a:hover {
 .span12, .container {
   width: 940px;
 }
+
+.paddedcontent {
+  padding: 15px;
+}
+
+.maincontainer {
+	background: #fff;
+	margin-top: -17px;
+}
+
 .offset1 {
   margin-left: 100px;
 }
@@ -2820,7 +2853,7 @@ button.btn.small, input[type="submit"].btn.small {
 }
 .modal-footer {
 
-  padding: 14px 15px 15px;
+  padding: 15px;
   margin-bottom: 0;
   background-color: #f5f5f5;
   border-top: 1px solid #ddd;
@@ -3390,6 +3423,7 @@ a.thumbnail:hover {
 #footer {
 	width: 440px;
 	padding: 0 10px;
+	margin-left: 5px;
 }
 
 
@@ -3402,7 +3436,7 @@ a.thumbnail:hover {
   color: white;
   position: relative;
   width: 100%;
-  margin-top: -18px;
+
 }
 
 .search h1 {
@@ -3467,5 +3501,9 @@ input#searchbutton {
 	color: red;
 }
 
+
+#roomdesc {
+	float: left;
+}
 
 

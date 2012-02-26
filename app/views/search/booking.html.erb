@@ -1,28 +1,56 @@
+<div class="paddedcontent">
 <h1><%= @hotelname %></h1>
 <%= image_tag "#{@image1}" %>
 
 
 <br />
-<ul>
+
+<div id="bookingresults">
+
+<div class="row">
+  <div class="span3"><b>Room Type</b></div>
+
+<% @bookingdetails['result']['availableDates'].each do |room| %>
+  <div class="span2"><b><% z = Date.parse room %><%= z.month %>/<%= z.day%>/<%= z.year %></b></div>
+<% end %>
+</div>
+	
 <% @bookingdetails['result']['roomTypes'].each do |room| %>
-<h3><%= room['description'] %></h3>
-    <ul>
+  <div class="row" id="highlight"><div class="span3"><%= room['description'] %></div>
+    
+
     <% room['availability'].each do |x| %>
-      <h5><% z = Date.parse x.first %><%= z.month %>/<%= z.day%>/<%= z.year %></h5>
-      <li># of Beds: <%= x.last.first['beds'] %></li>
-      <li>Price in USD: <%= number_to_currency(x.last.first['price']) %></li>
+      <div class="span2">
+      <!-- # of Beds: --> <%= x.last.first['beds'] %> | 
+      <!--Price in USD: --> <% @price = x.last.first['price'] %><%= number_to_currency(@price) %>
+      </div>
 
     <% end %>
-    </ul>
-
-
-
+  <div class="span2">Total Cost: <% @totalcost = number_to_currency(@price.to_f * @bookingdetails['result']['availableDates'].length) %><%= @totalcost %></div>
+  Select this room: <input type="radio" name="selector"   value=<%="#{room['code']}" %> />
+  </div>
 
 
 <% end %>
 
-</ul>
+<script>
+    $("#selector").live("click", function () {
+      var room_code = $('#selector').val();
+      $.post("/payment", { roomcode = room_code });
+    });
+  
+</script>
+
+
+
+</div>
+
+
 
 <!--Note that I need to edit how the terms and conditions are displayed -->
 <!--I'll need to let the user select which room and dates:  Want to return what the user has booked at the bottom using jQuery -->
 <%= @bookingdetails['result']['thingsToNote'] %>
+
+
+
+</div>

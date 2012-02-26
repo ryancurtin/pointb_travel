@@ -44,9 +44,15 @@ class SearchController < ApplicationController
     @image1 = session[:user]['image1']
     @image2 = session[:user]['image2']
     
-
+    roomcode = session[:user]['roomcode']
 
   end
+  
+  
+  def payment
+    
+  end
+  
    
   
 end
