@@ -18,38 +18,48 @@
   <div id="searchheading">
    <h1>Where do you want to go?</h1><br /><br /><br />
 
-   <form method="get" action="/search/results">
+   <form method="get" action="/search/results" class="well">
    
-   <label for="country">Country: </label>
-   <select name="country" id="country">
-   <option value="0" selected="selected">Please select a country</option>
-   <% @countries.each do |country| %>	
-   <option value="<%= country.name %>"><%= country.name %></option>
-   <% end %>
-   </select>
+   <div class="row">
+     <div class="span4">
+     <label for="country" id="frontpage">Country: </label>
+     <select name="country" id="country" class="frontlist">
+       <option value="0" selected="selected">Please select a country</option>
+       <% @countries.each do |country| %>	
+         <option value="<%= country.name %>"><%= country.name %></option>
+       <% end %>
+     </select>
+     </div>
    
+     <div class="span4">
+     <label for="city" id="frontpage">City: </label>
+     <select name="city" id="city" class="frontlist">
+       <option value="0" selected="selected" class="frontlist">Please select a city</option>
+     </select>
+     </div>
+   </div>
 
-   <label for="city">City: </label>
-   <select name="city" id="city">
-   <option value="0" selected="selected">Please select a city</option>
-  
-   </select>
-
-   <label for="nights">Number of Nights: </label>
-   <input name="nights" id="nights" value="3" />
-  
    <script>
    $(function() {
-     $( "#date" ).datepicker();
+     $( "#date" ).datepicker({ showButtonPanel: true }, { nextText: ">" });
 	 });
    </script>
-   <label for="date">Start Date: </label>
-   <input name="date" id="date" />
-  
+  <div class="row">
+    <div class="span4">
+      <label for="date" id="frontpage">Start Date: </label>
+      <input name="date" id="date" class="span2" />
+   </div>
 
+   <div class="span4">
+     <label for="nights" id="frontpage">Number of Nights: </label>
+     <input name="nights" class="span1" id="nights" value="3" />
+   </div>
 
+  </div>
 
-   <input id="searchbutton" name="searchbutton" type="submit" value="Let's Go!">
+   <br />
+
+   <input class="btn-primary" id="frontbutton" name="searchbutton" type="submit" value="Let's Go!">
    </form>
 
    </div>

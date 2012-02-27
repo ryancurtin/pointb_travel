@@ -1,9 +1,10 @@
 <div class="paddedcontent">
-<%= @date %>
+<h1>Here are your results for <%= @city %>, <%= @country %></h1>
+<br /><br />
 
-<% @searchresults['result']['Properties'].each do |hotel| %>
+<% @searchresults['result']['Properties'][0,10].each do |hotel| %>
 <% @hotelnumber = hotel['number'] %>
-<h3><%=link_to "#{hotel['name']}", "/#{@hotelnumber}/results" %> | <%= @hotelnumber %></h3>
+<h3><%=link_to "#{ raw hotel['name'] }", "/#{@hotelnumber}/results" %></h3>
 
 <br />
 <%= image_tag "#{hotel['images'][0]['url']}" %>
@@ -30,4 +31,7 @@
 <b>Description:</b> <%= hotel['shortDescription'] + "..." %>
 <br />
 <% end %>
+
+
+
 </div>

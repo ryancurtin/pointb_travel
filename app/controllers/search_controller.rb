@@ -8,15 +8,15 @@ class SearchController < ApplicationController
        flash[:error] = "Please select a country"
        redirect_to root_url
     else
-       city = params[:city]
-         city.gsub!(" ", "+") if city.include?(" ")
-       country = params[:country]
-         country.gsub!(" ", "+") if country.include?(" ")
+       @city = params[:city]
+         @city.gsub!(" ", "+") if @city.include?(" ")
+       @country = params[:country]
+         @country.gsub!(" ", "+") if @country.include?(" ")
          @date = params[:date]
          @nights = params[:nights]
     end
     
-    @url = "https://affiliate.xsapi.webresint.com/1.1/propertylocationsearch.json?consumer_key=rankandmile.com&consumer_signature=5a50436e660bee116ec0bbcff7ef018aa1637cab&Country=#{country}&City=#{city}&DateStart=#{@date}&NumNights=#{@nights}"
+    @url = "https://affiliate.xsapi.webresint.com/1.1/propertylocationsearch.json?consumer_key=rankandmile.com&consumer_signature=5a50436e660bee116ec0bbcff7ef018aa1637cab&Country=#{@country}&City=#{@city}&DateStart=#{@date}&NumNights=#{@nights}"
     @searchresults = HTTParty.get(@url).parsed_response
     session[:user] = {"date" => params[:date], "nights" => params[:nights]}
     
@@ -44,14 +44,27 @@ class SearchController < ApplicationController
     @image1 = session[:user]['image1']
     @image2 = session[:user]['image2']
     
-    roomcode = session[:user]['roomcode']
+    @roomcode = session[:user]['roomcode']
 
   end
   
   
   def payment
+    @guests = params[:guests]
+    @roomcode = params[:roomcode]
+    @date = session[:user]['date']
+    @nights = session[:user]['nights']
+    @hotelnumber = params[:id]
+    @paymenturl =  "https://affiliate.xsapi.webresint.com/1.1/propertybookingrequest.json?TestMode=1&consumer_key=rankandmile.com&consumer_signature=5a50436e660bee116ec0bbcff7ef018aa1637cab&&Currency=USD&PropertyNumber=#{@hotelnumber}&Language=English&DateStart=#{@date}&NumNights=#{@nights}&RoomPreference1=#{@roomcode}&Persons1=#{@guests}"
+    @paymentinfo = HTTParty.get(@paymenturl)
     
+    # Need to store BSID returned from booking request for future use
   end
+  
+  def confirmation
+    @confirmed = HTTParty.post("example URL with parameters")
+  end
+  
   
    
   

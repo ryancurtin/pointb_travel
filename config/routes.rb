@@ -12,6 +12,10 @@ Hostelapp::Application.routes.draw do
   
   get "/:id/booking" => 'search#booking'
   
+  get "/:id/payment" => 'search#payment'
+  
+  get "/:id/confirmation" => 'search#confirmation'
+  
   
   resources :cities
   

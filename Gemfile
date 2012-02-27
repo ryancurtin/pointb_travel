@@ -43,4 +43,6 @@ gem 'libxml-ruby'
 gem 'nokogiri'
 gem 'curl'
 
+# Pagination
+gem 'will_paginate'
 

@@ -1,0 +1,65 @@
+<h1>Your Payment Information for <%= @hotelname %></h1>
+
+<h3>Total Due:  <%= @paymentinfo['result']['BookingFee']['USD'] %> + <%= @paymentinfo['result']['Deposit']['USD'] %></h3>
+<p>*This is the amount that will be charged to your credit card</p>
+
+<h3>Due Upon Arrival: <%= @paymentinfo['result']['AmountDue']['USD'] %></h3>
+
+<h3>Customer Information</h3>
+  <form method="post" action="/<%= @hotelname %>/confirmation">
+    
+    <label for="firstname">First Name: </label>
+      <p><input name="firstname" size="16"/></p>
+
+    <label for="lastname">Last Name: </label>
+      <p><input name="lastname" size="16"/></p>
+
+    <label for="email">Email Address: </label>
+      <p><input name="email" /></p>
+
+    <label for="phone">Phone Number (no dashes/spaces): </label>
+      <p><input name="phone" size="24" /></p>
+
+    <label for="nationality">Nationality: </label>
+      <p><select name="nationality" id="nationality">
+      <% Country.all.each do |country| %>
+        <option name="nationality" value="<%= country.name %>"><%= country.name %></option>
+      <% end %>
+      </select></p>
+
+    <label for="gender">Gender of Your Group (i.e. M/F/Mixed): </label>
+        <p><select name="gender" id="gender">
+           <option value="Male">Male</option>	
+           <option value="Female">Female</option>	
+           <option value="Mixed">Mixed</option>	
+	    </select></p>
+
+    <label for="arrivaltime">Arrival Time (24h Format, 0-23)</label>
+      <p><input name="arrivaltime" /></p>
+
+    <label for="cardtype">Card Type: </label>
+      <% @paymentinfo['result']['creditCards'].each do |card|  %>
+        <p><select name="cardtype" value="<%= card['Name'] %>"><%= card['Name']%></select></p>
+	  <% end %>
+	
+    <label for="customername">Name on Card:</label>
+      <p><input name="customername" /></p>
+
+    <label for="expiry">Expiration Date (MM/YYYY): </label>
+      <p><input name="expirymonth" size="2"/> / <input name="expiryyear" size="4"/></p>
+	    
+    <label for="cardnumber">Card Number (no dashes/spaces): </label>
+      <p><input name="cardnumber" size="12" /></p>
+
+
+    <label for="CVV">Security Code (CVV): </label>
+      <p><input name="CVV" size="4" /></p>
+
+
+    <input id="searchbutton" name="submitpayment" type="submit" value="Submit Payment" disabled />
+</form>
+
+<br />
+
+
+<p class="fineprint"><%= @paymentinfo['thingsToNote'] %></p>

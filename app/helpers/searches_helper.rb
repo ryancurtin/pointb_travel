@@ -28,6 +28,24 @@ module SearchesHelper
   # "Tunisia", "Turkey", "Turks And Caicos Islands", "Uganda", "Ukraine",
   # "United Arab Emirates", "United Kingdom", "Uruguay", "USA", "US Virgin Islands",
   # "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Wales", "Zambia", "Zimbabwe"]
-  
+
+def scripts
+# <script>
+#       $("#selector").live("click", function () {
+#         var room_code = $('#selector').val();
+#         $.post("/payment", { roomcode = room_code });
+#       });
+# 
+# 
+#       $("#guests").live("change", function () {
+#         var guestcount = $('#guests').val();
+#         $.post("/payment", { guests = guestcount });
+#       });
+# </script>
+# 
+
+end
+
+
   
 end
