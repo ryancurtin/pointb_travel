@@ -5,7 +5,7 @@ gem 'rails', '3.2.0'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'pg'
 
 
 # Gems used only for assets and not required
@@ -43,6 +43,5 @@ gem 'libxml-ruby'
 gem 'nokogiri'
 gem 'curl'
 
-# Pagination
-gem 'will_paginate'
+
 
