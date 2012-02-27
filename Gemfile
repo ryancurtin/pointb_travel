@@ -45,7 +45,6 @@ gem 'jquery-rails'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 # XML Parsing
-gem 'httparty'
 gem 'libxml-ruby'
 gem 'nokogiri'
 gem 'curl'
