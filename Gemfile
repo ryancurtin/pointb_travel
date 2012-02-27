@@ -48,6 +48,7 @@ gem 'jquery-rails'
 gem 'libxml-ruby'
 gem 'nokogiri'
 gem 'curl'
+gem 'httparty'
 
 
 
