@@ -1,37 +1,56 @@
 <div class="paddedcontent">
+<div class="resultsheading">
+<% if @searchresults['result']['Properties'].blank? %>
+  <h1>We're sorry, we couldn't find anything for: </h1>
+  <h3><%= @city.gsub("+", " ") %>, <%= @country.gsub("+", " ") %> on <%= @date %></h3>
+  <h3><%= link_to "Please go back and search again", root_url %></h3>
+<!-- Remember to fix this to render a new search form -->
+<% else %>
+
+
 <h1>Here are your results for <%= @city %>, <%= @country %></h1>
-<br /><br />
+<br />
+<h3>Sort by:</h3>
+<label for="sort"></label>
+<select id="sort">
+  <option value="Price">Price</option>
+  <option value="Rating">Rating</option>
+</select>
+<hr>
+</div>
 
 <% @searchresults['result']['Properties'][0,10].each do |hotel| %>
 <% @hotelnumber = hotel['number'] %>
-<h3><%=link_to "#{ raw hotel['name'] }", "/#{@hotelnumber}/results" %></h3>
+  <div class="row-fluid">
+    <div class="span2">
+      <%= image_tag "#{hotel['images'][0]['url']}" %>
+    </div>	
+    <div class="span8"><span class="hotelname"><%=link_to "#{ raw hotel['name'] }", "/#{@hotelnumber}/results" %></title></div>
+      <div class="prices">
+	    <% if hotel['bedPrices']['cheapestDorm'].blank? %>
+		  <%= number_to_currency(hotel['bedPrices']['cheapestPrivate']['USD']) %>
+	    <% else %>
+	      <%= number_to_currency(hotel['bedPrices']['cheapestDorm']['USD']) %>
+	    <% end %>
+	  </div>
+	  <br />
+      <div class="rating">
+      <strong>Rating: <%= hotel['avgRating'] %>%</strong>
+	  </div>
 
-<br />
-<%= image_tag "#{hotel['images'][0]['url']}" %>
-<br />
-<b>Address:</b> <%= hotel['address1'] %>
-<br />
-<b>Rating:</b> <%= hotel['avgRating'] %>
-<br />
-<b>Dorm Price:</b>  
-  <% if hotel['bedPrices']['cheapestDorm'].nil? %>
-	"N/A"
-  <% else %>
-    <%= hotel['bedPrices']['cheapestDorm']['USD'] %>
-  <% end %>
-<br />
-<b>Private Price:</b>  
-  <% if hotel['bedPrices']['cheapestPrivate'].nil?	%>
-	"N/A"
-  <% else %>
-    <%= hotel['bedPrices']['cheapestPrivate']['USD'] %>
-  <% end %>
-<br />
-
-<b>Description:</b> <%= hotel['shortDescription'] + "..." %>
-<br />
+    <div class="span10">
+	  <div class="hoteldetails">
+      <strong><%= hotel['address1'] %></strong>
+      <br />
+      <br />
+      <%= hotel['shortDescription'] + "..." %>
+      <br />
+      </div>
+    </div>
+  </div>
+  <hr>
+  <br />
 <% end %>
 
-
-
+<% end %>
 </div>

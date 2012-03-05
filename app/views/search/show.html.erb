@@ -1,20 +1,60 @@
 <div class="paddedcontent">
 
+<div class="resultsheading">
 <h1><%= link_to "#{@hoteldetails['result']['propertyName']}", "/#{@hotelnumber}/booking" %></h1>
-
-<br />
-
-
+<h3><%= @hoteldetails['result']['address1'] %>, <%= @hoteldetails['result']['city'] %>, <%= @hoteldetails['result']['country'] %></h3>
+<p><strong>Email:</strong> <%= mail_to "#{@hoteldetails['result']['email']}" %></p>
+<p><strong>Phone:</strong> <%= @hoteldetails['result']['tel'] %></p>
+<hr />
+</div>
+<div id="imagestop">
 <%= image_tag "#{@hoteldetails['result']['propertyImages'][0]['imageURL']}" %>
 <%= image_tag "#{@hoteldetails['result']['propertyImages'][1]['imageURL']}" %>
-<%= image_tag "#{@hoteldetails['result']['propertyImages'][2]['imageURL']}" %>
+</div>
 
-<h3><%= @hoteldetails['result']['city'] %>, <%= @hoteldetails['result']['country'] %></h3>
-<p><strong>Email:</strong> <%= @hoteldetails['result']['email'] %></p>
-<p><strong>Phone:</strong> <%= @hoteldetails['result']['tel'] %></p>
-<p><strong>Address:</strong> <%= @hoteldetails['result']['address1'] %></p>
-<p><strong>Description:</strong> <%= @hoteldetails['result']['description'] %></p>
+<script>
+	$(function() {
+		$( "#tabs" ).tabs();
+	});
+</script>
 
+<div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">Description</a></li>
+		<li><a href="#tabs-2">Amenities</a></li>
+		<li><a href="#tabs-3">Images</a></li>
+	</ul>
+	<div id="tabs-1">
+    <h3></h3>
+    
+    <p><strong>Description:</strong> <%= raw truncate(@hoteldetails['result']['description'], :length => 1000) %></p>
+    <p><strong>Directions:</strong> <% if !@hoteldetails['result']['directions'].blank? %>
+	   <%= @hoteldetails['result']['directions'] %>
+	   <% end %>
+	</p>
+    </div>
+
+    <div id="tabs-2">
+	  <ul>
+	    <% if !@hoteldetails['result']['facilities'].blank? %>
+	       <% @hoteldetails['result']['facilities'].each do |feature| %>
+	       <li><%= feature %></li>
+	       <% end %>
+	    <% else %>
+	       <li>No amenities listed - see description for details</li>
+	    <% end %>
+	  </ul>
+	</div>
+	
+	<div id="tabs-3">
+		<% @hoteldetails['result']['propertyImages'].each do |image| %>
+		  <%= image_tag "#{image['imageURL']}" if image['imageSize'] == "large" %>
+		<% end %>
+	</div>
+
+</div>
+
+<!--Make sure to add the list of features at each facility! -->
 
 <h2><%= link_to "See Rooms / Availability", "/#{@hotelnumber}/booking" %></h2>
 </div>

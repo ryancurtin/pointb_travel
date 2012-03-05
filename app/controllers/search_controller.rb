@@ -50,6 +50,7 @@ class SearchController < ApplicationController
   
   
   def payment
+    @hotelname = session[:user]['name']
     @guests = params[:guests]
     @roomcode = params[:roomcode]
     @date = session[:user]['date']

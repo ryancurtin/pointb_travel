@@ -123,9 +123,7 @@ a:hover {
   *zoom: 1;
 }
 
-#bookingresults {
-	background: #f4f4f4;
-}
+
 
 #highlight {
 	margin-bottom: 10px;
@@ -154,6 +152,9 @@ a:hover {
 .span2 {
   width: 140px;
 }
+
+
+
 .span3 {
   width: 220px;
 }
@@ -183,6 +184,7 @@ a:hover {
 }
 .span12, .container {
   width: 940px;
+
 }
 
 .paddedcontent {
@@ -190,8 +192,9 @@ a:hover {
 }
 
 .maincontainer {
-	background: #fff;
+	background: #f8f8ff;
 	margin-top: -17px;
+    box-shadow:2px 0px 3px #A8A8A8, -2px 0px 5px #A8A8A8;
 }
 
 .offset1 {
@@ -230,6 +233,7 @@ a:hover {
 .row-fluid {
   width: 100%;
   *zoom: 1;
+
 }
 .row-fluid:before, .row-fluid:after {
   display: table;
@@ -331,7 +335,7 @@ h6 {
   margin: 0;
   font-weight: bold;
 
-  color: #006dcc;
+  color: #000;
   text-rendering: optimizelegibility;
 }
 h1 small,
@@ -3418,9 +3422,7 @@ a.thumbnail:hover {
   -webkit-border-radius: 0 0 6px 6px;
   -moz-border-radius: 0 0 6px 6px;
   border-radius: 0 0 6px 6px;
-  -webkit-box-shadow: inset 0 1px 0 #ffffff;
-  -moz-box-shadow: inset 0 1px 0 #ffffff;
-  box-shadow: inset 0 1px 0 #ffffff;
+  box-shadow:2px 0px 3px #A8A8A8, -2px 0px 3px #A8A8A8;
   border-top: 2px solid #ddd;
 }
 
@@ -3549,21 +3551,86 @@ input#searchbutton {
     text-align: right;
 }
 
-#toprow {
-	font-size: 18px;
-	margin-bottom: 10px;
-	padding-bottom: 10px;
-	text-align: center;
-}
 
-#cells {
+
+.bookingcell {
+	width: 100px;
 	text-align: center;
 	border: 1px solid #000;
 	vertical-align: middle;
 }
 
+.costcell {
+	width: 200px;
+	text-align: center;
+	border: 1px solid #000;
+	vertical-align: middle;
+}
+
+.roomdescription {
+	width: 200px;
+}
+
+#fineprint {
+	font-size: 10px;
+}
+
+.rating {
+	margin-top:10px;
+	color:red;
+	font-size: 24px;
+	float: right;
+}
+
+.hotelname {
+	font-size: 30px;
+	font-weight: bold;
+	line-height: 1.05em;
+
+}
+
+.resultitem {
+	margin-bottom: 20px;
+}
+
+.row-fluid:hover a {
+    text-decoration:underline;
+    color: #000;
+}
+
+.prices {
+	margin-top: 10px;
+	font-size: 36px;
+	font-weight: bold;
+	float: right;
+
+	
+}
+
+.hoteldetails {
+	margin-top: -5px;
+}
 
 
+.resultsheading {
+    -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;	
+	background-image: -ms-linear-gradient(left, #F8F8FF 0%, #FFFAFA 100%);
+	background-image: -moz-linear-gradient(left, #F8F8FF 0%, #FFFAFA 100%);
+	background-image: -o-linear-gradient(left, #F8F8FF 0%, #FFFAFA 100%);
+	background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #F8F8FF), color-stop(1, #FFFAFA));
+	background-image: -webkit-linear-gradient(left, #F8F8FF 0%, #FFFAFA 100%);
+	background-image: linear-gradient(left, #F8F8FF 0%, #FFFAFA 100%);
+	padding: 5px;
+	margin-bottom: 5px;
+}
 
+.tabs {
+	background-color: #fff;
+}
 
-
+#imagestop {
+    text-align: center;
+    margin-bottom: 10px;
+}

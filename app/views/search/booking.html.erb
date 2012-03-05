@@ -6,7 +6,6 @@
 <br />
 <form method="get" action="/<%= @hotelnumber %>/payment">
 
-<div id="bookingresults">
 
 
 
@@ -21,47 +20,69 @@
 	  <option value="6">6</option>	
 		
 	</select>
+	
+	<!-- <a href="#">Show All Results Again</a> -->
 </div>
 
 <br />
 
-<div class="row-fluid">
-  <div class="span3" id="toprow"><b>Room Type</b></div>
 
-<% @bookingdetails['result']['availableDates'].each do |room| %>
-  <div class="span2" id="toprow"><b><% z = Date.parse room %><%= z.month %>/<%= z.day%>/<%= z.year %></b></div>
-<% end %>
-</div>
-	
+
+
+<script>
+	$(document).ready(function(){
+		$(":hidden").show();
+		$('#guests').live('change', function() {
+			var num_guests = $(this).val();
+			$("td[data-num-beds]").each(function(){
+				num_beds = $(this).val();
+				if (num_guests > num_beds) {
+					$(this).parent().hide(); // this should be the tablerow
+				}
+			});
+		});
+	});
+</script>
+<table>
+  <thead>
+	<th>Room Type</th>
+	  <% @bookingdetails['result']['availableDates'].each do |room| %>
+	    <th><% z = Date.parse room %><%= z.month %>/<%= z.day%>/<%= z.year %></th>
+	<% end %>
+	<th>Total Cost (per person)</th>
+  </thead>
+  <tbody>
+<% i = 1 %>
 <% @bookingdetails['result']['roomTypes'].each do |room| %>
-  <div class="row-fluid" id="cells"><div class="span3"><h5><%= room['description'] %></h5></div>
-    
+    <tr id="row-<%= i %>">
+	  <td id="roomtype-<%= i %>" class="roomdescription">
+  	    <h5><%= room['description'] %></h5>
+	  </td>
 
-    <% room['availability'].each do |x| %>
-      <div class="span2">
-      <!-- # of Beds: --> <%= x.last.first['beds'] %> | 
-      <!--Price in USD: --> <% @price = x.last.first['price'] %><%= number_to_currency(@price) %>
-      </div>
 
+    <% room['availability'].values.flatten.each do |avail| %>
+	  <td id="avail-<%= i %>" data-num-beds="<%= avail['beds'] %>" class="bookingcell">
+      <!-- # of Beds: --> <%= avail['beds'] %> |
+      <!--Price in USD: --><% @price = avail['price'].to_f %><%= number_to_currency(@price) %>
+	  </td>
     <% end %>
-  <div class="span2">Total Cost (per person): <% @totalcost = number_to_currency(@price.to_f * @bookingdetails['result']['availableDates'].length) %><%= @totalcost %></div>
-  <div class="span1"><input type="radio" name="roomcode"   value=<%="#{room['code']}" %> /></div>
-  </div>
-
-
-
+    <td class="costcell">
+    <% @totalcost = number_to_currency(@price * @bookingdetails['result']['availableDates'].length) %><%= @totalcost %>
+    <input type="radio" name="roomcode" value=<%="#{room['code']}" %> />
+    </td>
+  </tr>
+<% i += 1 %>
 <% end %>
-<input id="innerbutton" class="btn-primary" name="hotelbutton" type="submit" value="Book Now!" disabled />
-</div>
+</table>
+
+<input id="innerbutton" class="btn-primary" name="hotelbutton" type="submit" value="Book Now!" />
 
 </form>
-
+<br />
 
 
 <!--Note that I need to edit how the terms and conditions are displayed -->
 <!--I'll need to let the user select which room and dates:  Want to return what the user has booked at the bottom using jQuery -->
+<div id="fineprint">
 <%= @bookingdetails['result']['thingsToNote'] %>
-
-
-
 </div>
