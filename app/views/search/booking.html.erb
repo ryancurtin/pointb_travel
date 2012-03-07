@@ -30,17 +30,18 @@
 
 
 <script>
-	$(document).ready(function(){
-		$(":hidden").show();
-		$('#guests').live('change', function() {
-			var num_guests = $(this).val();
-			$("td[data-num-beds]").each(function(){
-				num_beds = $(this).val();
-				if (num_guests > num_beds) {
-					$(this).parent().hide(); // this should be the tablerow
+	$(document).ready(function() {
+ 		$('#guests').bind('change', function() {
+        	num_guests = $(this).val();
+        	$('td[data-num-beds]').each(function(){
+				num_beds = $(this).attr('data-num-beds');
+				if (parseInt(num_guests) > parseInt(num_beds)) {
+					$(this).parent().hide();
+				} else {
+					$(this).parent().show();
 				}
 			});
-		});
+    	});
 	});
 </script>
 <table>

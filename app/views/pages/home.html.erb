@@ -5,7 +5,7 @@
 		country_name = $('#country').val();
 		$.getJSON('/cities?country='+country_name, function(data) {
 		   $('#city').empty();
-		   $('#city').append('<option value="0">Please select a city</option>"');
+		   $('#city').append('<option value="0">Please select a city</option>');
 		   $.each(data, function(key, value) {
 			    $('#city').append('<option value="' + value.name +'">'+  value.name +'</option>');
 		    });
