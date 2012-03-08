@@ -1,0 +1,88 @@
+<form method="get" action="/<%= @hotelnumber %>/payment">
+
+
+
+
+<div class="row-fluid">
+	<h3>Select the Number of Guests Before Proceeding: <label for="guests"></label></h3>
+	<select name="guests" id="guests" class="span1">
+	  <option value="1">1</option>
+	  <option value="2">2</option>	
+	  <option value="3">3</option>	
+	  <option value="4">4</option>	
+	  <option value="5">5</option>	
+	  <option value="6">6</option>
+	  <option value="6">7</option>
+	  <option value="6">8</option>
+	  <option value="6">9</option>
+	  <option value="6">10</option>
+		
+	</select>
+	
+	<!-- <a href="#">Show All Results Again</a> -->
+</div>
+
+<br />
+
+
+
+
+<script>
+	$(document).ready(function() {
+ 		$('#guests').bind('change', function() {
+        	num_guests = $(this).val();
+        	$('td[data-num-beds]').each(function(){
+				num_beds = $(this).attr('data-num-beds');
+				if (parseInt(num_guests) > parseInt(num_beds)) {
+					$(this).parent().hide();
+				} else {
+					$(this).parent().show();
+				}
+			});
+    	});
+	});
+</script>
+<table>
+  <thead>
+	<th>Room Type</th>
+	  <% @bookingdetails['result']['availableDates'].each do |room| %>
+	    <th><% z = Date.parse room %><%= z.month %>/<%= z.day%>/<%= z.year %></th>
+	<% end %>
+	<th>Total Cost (per person)</th>
+  </thead>
+  <tbody>
+<% i = 1 %>
+<% @bookingdetails['result']['roomTypes'].each do |room| %>
+    <tr id="row-<%= i %>">
+	  <td id="roomtype-<%= i %>" class="roomdescription">
+  	    <h5><%= room['description'] %></h5>
+	  </td>
+
+    <% y = 0 %>
+    <% z = 0 %>
+    <% room['availability'].values.flatten.each do |avail| %>
+      <% if room['availability'].keys[y] == @bookingdetails['result']['availableDates'][z] %>
+        <td id="avail-<%= i %>" data-num-beds="<%= avail['beds'] %>" class="bookingcell">
+        <!-- # of Beds: --> <%= avail['beds'] %> |
+        <!--Price in USD: --><% @price = avail['price'].to_f %><%= number_to_currency(@price) %>
+	    </td>
+	    <% y += 1 %>
+	    <% z += 1 %>
+      <% else %>
+        <td class="bookingcell"> X </td>
+        <% z += 1%>
+        <% redo %>
+      <% end %>
+    <% end %>
+    <td class="costcell" data-cost="#{@totalcost}">
+    <% @totalcost = number_to_currency(@price * @bookingdetails['result']['availableDates'].length) %><%= @totalcost %>
+    <input type="radio" name="roomcode" value=<%="#{room['code']}" %> />
+    </td>
+  </tr>
+<% i += 1 %>
+<% end %>
+</table>
+
+<input id="innerbutton" class="btn-primary" name="hotelbutton" type="submit" value="Book Now!" />
+
+</form>

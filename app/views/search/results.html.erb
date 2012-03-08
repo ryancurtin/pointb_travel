@@ -1,7 +1,7 @@
 <div class="paddedcontent">
 <div class="resultsheading">
 <% if @searchresults['result']['Properties'].blank? %>
-  <h1>We're sorry, we couldn't find anything for: </h1>
+  <h1>We're sorry, we couldn't find any properties available in: </h1>
   <h3><%= @city.gsub("+", " ") %>, <%= @country.gsub("+", " ") %> on <%= @date %></h3>
   <h3><%= link_to "Please go back and search again", root_url %></h3>
 <!-- Remember to fix this to render a new search form -->

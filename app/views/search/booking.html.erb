@@ -4,81 +4,11 @@
 
 
 <br />
-<form method="get" action="/<%= @hotelnumber %>/payment">
 
+<%= render 'search/booking_table' %>
 
+<p id="totals"><!--Placeholder for jQuery-generated total price, # of guests, and nights --></p>
 
-
-<div class="row-fluid">
-	<h3>Select the Number of Guests Before Proceeding: <label for="guests"></label></h3>
-	<select name="guests" id="guests" class="span1">
-	  <option value="1">1</option>
-	  <option value="2">2</option>	
-	  <option value="3">3</option>	
-	  <option value="4">4</option>	
-	  <option value="5">5</option>	
-	  <option value="6">6</option>	
-		
-	</select>
-	
-	<!-- <a href="#">Show All Results Again</a> -->
-</div>
-
-<br />
-
-
-
-
-<script>
-	$(document).ready(function() {
- 		$('#guests').bind('change', function() {
-        	num_guests = $(this).val();
-        	$('td[data-num-beds]').each(function(){
-				num_beds = $(this).attr('data-num-beds');
-				if (parseInt(num_guests) > parseInt(num_beds)) {
-					$(this).parent().hide();
-				} else {
-					$(this).parent().show();
-				}
-			});
-    	});
-	});
-</script>
-<table>
-  <thead>
-	<th>Room Type</th>
-	  <% @bookingdetails['result']['availableDates'].each do |room| %>
-	    <th><% z = Date.parse room %><%= z.month %>/<%= z.day%>/<%= z.year %></th>
-	<% end %>
-	<th>Total Cost (per person)</th>
-  </thead>
-  <tbody>
-<% i = 1 %>
-<% @bookingdetails['result']['roomTypes'].each do |room| %>
-    <tr id="row-<%= i %>">
-	  <td id="roomtype-<%= i %>" class="roomdescription">
-  	    <h5><%= room['description'] %></h5>
-	  </td>
-
-
-    <% room['availability'].values.flatten.each do |avail| %>
-	  <td id="avail-<%= i %>" data-num-beds="<%= avail['beds'] %>" class="bookingcell">
-      <!-- # of Beds: --> <%= avail['beds'] %> |
-      <!--Price in USD: --><% @price = avail['price'].to_f %><%= number_to_currency(@price) %>
-	  </td>
-    <% end %>
-    <td class="costcell">
-    <% @totalcost = number_to_currency(@price * @bookingdetails['result']['availableDates'].length) %><%= @totalcost %>
-    <input type="radio" name="roomcode" value=<%="#{room['code']}" %> />
-    </td>
-  </tr>
-<% i += 1 %>
-<% end %>
-</table>
-
-<input id="innerbutton" class="btn-primary" name="hotelbutton" type="submit" value="Book Now!" />
-
-</form>
 <br />
 
 
