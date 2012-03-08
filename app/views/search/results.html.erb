@@ -19,7 +19,7 @@
 <hr>
 </div>
 
-<% @searchresults['result']['Properties'][0,10].each do |hotel| %>
+<% @paginatedresults.each do |hotel| %>
 <% @hotelnumber = hotel['number'] %>
   <div class="row-fluid">
     <div class="span2">
@@ -51,6 +51,7 @@
   <hr>
   <br />
 <% end %>
+<%= paginate @paginatedresults %>
 
 <% end %>
 </div>

@@ -2721,6 +2721,23 @@ button.btn.small, input[type="submit"].btn.small {
   border: 1px solid #ddd;
   border-left-width: 0;
 }
+
+.first {
+  float: left;
+  text-decoration: none;
+  border-left: 1px solid #ddd;}
+
+.pagination > .page_current, .page_gap {
+  float: left;
+  padding: 0 14px;
+  line-height: 34px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  border-left-width: 0;
+}
+
+
+
 .pagination a:hover, .pagination .active a {
   background-color: #f5f5f5;
 }
@@ -2734,7 +2751,7 @@ button.btn.small, input[type="submit"].btn.small {
   cursor: default;
 }
 .pagination li:first-child a {
-  border-left-width: 1px;
+  border-left: 1px solid;
   -webkit-border-radius: 3px 0 0 3px;
   -moz-border-radius: 3px 0 0 3px;
   border-radius: 3px 0 0 3px;

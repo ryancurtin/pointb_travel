@@ -50,5 +50,5 @@ gem 'nokogiri'
 gem 'curl'
 gem 'httparty'
 
-
+gem 'kaminari'
 

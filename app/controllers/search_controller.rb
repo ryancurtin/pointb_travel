@@ -1,8 +1,6 @@
 # encoding: utf-8
 class SearchController < ApplicationController
-
-
-
+  
   def results
     if params[:city] == '0' || params[:country == '0']
        flash[:error] = "Please select a country"
@@ -19,8 +17,11 @@ class SearchController < ApplicationController
     @url = "https://affiliate.xsapi.webresint.com/1.1/propertylocationsearch.json?consumer_key=rankandmile.com&consumer_signature=5a50436e660bee116ec0bbcff7ef018aa1637cab&Country=#{@country}&City=#{@city}&DateStart=#{@date}&NumNights=#{@nights}"
     @searchresults = HTTParty.get(@url).parsed_response
     session[:user] = {"date" => params[:date], "nights" => params[:nights]}
-    
+  
+    @paginatedresults = Kaminari.paginate_array(@searchresults['result']['Properties']).page(params[:page]).per(10)
+  
   end
+  
   def show
     @hotelnumber = params[:id]
     @detailsurl = "https://affiliate.xsapi.webresint.com/1.1/propertyinformation.json?consumer_key=rankandmile.com&consumer_signature=5a50436e660bee116ec0bbcff7ef018aa1637cab&PropertyNumber=#{@hotelnumber}"
