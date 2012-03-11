@@ -51,4 +51,4 @@ gem 'curl'
 gem 'httparty'
 
 gem 'kaminari'
-
+gem 'devise', '2.0.4'

@@ -1,5 +1,7 @@
 Hostelapp::Application.routes.draw do
 
+  devise_for :users
+
   get "search/results"
   
   get "search/postresults"
