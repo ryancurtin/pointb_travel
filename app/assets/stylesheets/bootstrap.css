@@ -2164,6 +2164,7 @@ button.btn.small, input[type="submit"].btn.small {
 }
 .nav-tabs, .nav-pills {
   *zoom: 1;
+
 }
 .nav-tabs:before,
 .nav-pills:before,
@@ -2177,7 +2178,8 @@ button.btn.small, input[type="submit"].btn.small {
 }
 .nav-tabs > li, .nav-pills > li {
   float: left;
-
+  line-height: 44px;
+  color: #fff;
 }
 .nav-tabs > li > a, .nav-pills > li > a {
   padding-right: 12px;

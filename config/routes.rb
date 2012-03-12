@@ -1,6 +1,12 @@
 Hostelapp::Application.routes.draw do
 
+  resources :highlights
+
+  resources :vacations
+
   devise_for :users
+  
+  resources :users
 
   get "search/results"
   
@@ -20,9 +26,6 @@ Hostelapp::Application.routes.draw do
   
   
   resources :cities
-  
-
-  resources :hotels
 
   get "pages/home"
 
