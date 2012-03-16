@@ -7,8 +7,7 @@
 <!-- Remember to fix this to render a new search form -->
 <% else %>
 
-
-<h1>Here are your results for <%= @city %>, <%= @country %></h1>
+<h1>Here are your results for <%= @city.gsub("+", " ") %>, <%= @country.gsub("+", " ") %></h1>
 <br />
 <h3>Sort by:</h3>
 <label for="sort"></label>
@@ -25,7 +24,7 @@
     <div class="span2">
       <%= image_tag "#{hotel['images'][0]['url']}" %>
     </div>	
-    <div class="span8"><span class="hotelname"><%=link_to "#{ raw hotel['name'] }", "/#{@hotelnumber}/results" %></title></div>
+    <div class="span8"><span class="hotelname"><%=link_to "#{ raw hotel['name'] }", "/#{@hotelnumber}/results" %></span></div>
       <div class="prices">
 	    <% if hotel['bedPrices']['cheapestDorm'].blank? %>
 		  <%= number_to_currency(hotel['bedPrices']['cheapestPrivate']['USD']) %>

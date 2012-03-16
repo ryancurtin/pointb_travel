@@ -2181,6 +2181,7 @@ button.btn.small, input[type="submit"].btn.small {
   line-height: 44px;
   color: #fff;
 }
+
 .nav-tabs > li > a, .nav-pills > li > a {
   padding-right: 12px;
   padding-left: 12px;
@@ -3528,9 +3529,7 @@ input#searchbutton {
 }
 
 
-#roomdesc {
-	float: left;
-}
+
 
 #frontpage {
 	font-size: 18px;
@@ -3588,6 +3587,7 @@ input#searchbutton {
 
 .roomdescription {
 	width: 200px;
+	border: 1px solid black;
 }
 
 #fineprint {
@@ -3654,6 +3654,3 @@ input#searchbutton {
     margin-bottom: 10px;
 }
 
-#notice {
-	color:green;
-}

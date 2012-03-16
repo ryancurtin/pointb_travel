@@ -12,10 +12,10 @@
 	  <option value="4">4</option>	
 	  <option value="5">5</option>	
 	  <option value="6">6</option>
-	  <option value="6">7</option>
-	  <option value="6">8</option>
-	  <option value="6">9</option>
-	  <option value="6">10</option>
+	  <option value="7">7</option>
+	  <option value="8">8</option>
+	  <option value="9">9</option>
+	  <option value="10">10</option>
 		
 	</select>
 	
@@ -34,7 +34,10 @@
         	$('td[data-num-beds]').each(function(){
 				num_beds = $(this).attr('data-num-beds');
 				if (parseInt(num_guests) > parseInt(num_beds)) {
-					$(this).parent().hide();
+					$(this).parent().children().css("background-color", "gray");
+					$(this).parent().children().css("text-decoration", "line-through");
+					
+					$(this).parent().children(".costcell").children("#roomselect").attr("disabled",true);					
 				} else {
 					$(this).parent().show();
 				}
@@ -76,7 +79,7 @@
     <% end %>
     <td class="costcell" data-cost="#{@totalcost}">
     <% @totalcost = number_to_currency(@price * @bookingdetails['result']['availableDates'].length) %><%= @totalcost %>
-    <input type="radio" name="roomcode" value=<%="#{room['code']}" %> />
+    <input type="radio" id="roomselect" name="roomcode" value=<%="#{room['code']}" %> />
     </td>
   </tr>
 <% i += 1 %>

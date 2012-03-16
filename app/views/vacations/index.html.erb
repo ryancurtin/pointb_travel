@@ -1,0 +1,27 @@
+<h1>Listing vacations</h1>
+
+<table>
+  <tr>
+    <th>Destination</th>
+    <th>Description</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @vacations.each do |vacation| %>
+  <tr>
+    <td><%= vacation.destination %></td>
+    <td><%= vacation.description %></td>
+    <td><%= vacation.user_id %></td>
+    <td><%= link_to 'Show', vacation %></td>
+    <td><%= link_to 'Edit', edit_vacation_path(vacation) %></td>
+    <td><%= link_to 'Destroy', vacation, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Vacation', new_vacation_path %>

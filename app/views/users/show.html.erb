@@ -1,0 +1,13 @@
+<div class="paddedcontent">
+
+<h1><% if @user %>
+	  <%= @user.email %>
+	<% end %>
+</h1>
+
+<h3>Vacations:</h3>
+
+
+<p>Add Your Vacation: <%= link_to 'New Vacation', new_vacation_path(:user_id => @user.id) %></p>
+
+</div>
