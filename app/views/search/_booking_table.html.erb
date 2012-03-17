@@ -24,7 +24,20 @@
 
 <br />
 
+<script>
+   
+	$("input:radio[name=roomcode]").live('click', function() {
+	  guests = $('#guests').val();
+	  cost = $(this).parent().text();
+	  totalcost = (parseFloat(cost.replace("$", "")) * guests).toFixed(2);
+	  $("#guestsbottom").empty();
+	  $("#totalconfirm").empty();
+	  $("#guestsbottom").append(guests);
+	  $("#totalconfirm").append(totalcost);
+	  $("#confirmation").show();
+	  });
 
+</script>
 
 
 <script>
@@ -77,7 +90,7 @@
         <% redo %>
       <% end %>
     <% end %>
-    <td class="costcell" data-cost="#{@totalcost}">
+    <td class="costcell" data-cost="<%= @totalcost %>">
     <% @totalcost = number_to_currency(@price * @bookingdetails['result']['availableDates'].length) %><%= @totalcost %>
     <input type="radio" id="roomselect" name="roomcode" value=<%="#{room['code']}" %> />
     </td>
@@ -85,7 +98,10 @@
 <% i += 1 %>
 <% end %>
 </table>
-
+<div id="confirmation" style="display:none;">
+You've selected a room for <%= @newnights %> nights with <span id="guestsbottom"></span> guests<br />
+Your total is:  $<span id="totalconfirm"></span>, click below to proceed.
+</div>
 <input id="innerbutton" class="btn-primary" name="hotelbutton" type="submit" value="Book Now!" />
 
 </form>
