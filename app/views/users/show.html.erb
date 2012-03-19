@@ -1,7 +1,9 @@
 <div class="paddedcontent">
 
 <h1><% if @user %>
-	  <%= @user.email %>
+	  <%= @user.email %><br />
+	  <%= @user.name %><br />
+      <%= image_tag "#{@user.photo.gsub('square', 'large')}" %>
 	<% end %>
 </h1>
 

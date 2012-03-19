@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<!--Want to add in webkit fonts to make it look better and CSS to style images to look like polaroids -->
 <p>
   <b>Destination:</b>
   <%= @vacation.destination %>
@@ -13,6 +13,14 @@
 <p>
   <b>User:</b>
   <%= @vacation.user_id %>
+</p>
+
+<p>
+  <b>Highlights</b><br />
+  <% @vacation.highlights.each do |x| %>
+    <strong><%= x.title %></strong><br />
+    <%= x.description %><br />
+  <% end %>
 </p>
 
 
