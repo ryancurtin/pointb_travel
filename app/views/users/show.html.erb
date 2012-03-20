@@ -3,7 +3,7 @@
 <h1><% if @user %>
 	  <%= @user.email %><br />
 	  <%= @user.name %><br />
-      <%= image_tag "#{@user.photo.gsub('square', 'large')}" %>
+      <%= image_tag "#{@user.photo.gsub('square', 'large')}" if @user.photo %>
 	<% end %>
 </h1>
 

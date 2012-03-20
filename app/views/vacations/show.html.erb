@@ -1,28 +1,25 @@
 <p id="notice"><%= notice %></p>
+<div class="vacation">
+
 <!--Want to add in webkit fonts to make it look better and CSS to style images to look like polaroids -->
-<p>
-  <b>Destination:</b>
-  <%= @vacation.destination %>
-</p>
 
-<p>
-  <b>Description:</b>
-  <%= @vacation.description %>
-</p>
+<h1><%= @vacation.user.name %>'s Vacation to <%= @vacation.destination %></h1>
+<div class="vacimage"><%= image_tag(@vacation.image) if @vacation.image? %></div>
 
-<p>
-  <b>User:</b>
-  <%= @vacation.user_id %>
-</p>
-
-<p>
-  <b>Highlights</b><br />
+<div id="vacationdesc">
+<h2>Here's What I Did:</h2>
+<p><%= @vacation.description %></p>
+  <h2>The Details:</h2>
   <% @vacation.highlights.each do |x| %>
-    <strong><%= x.title %></strong><br />
-    <%= x.description %><br />
+   
+    <h3><%= x.title %></h3>
+    <p><%= x.description %></p>
+   
   <% end %>
-</p>
+</div>
 
 
 <%= link_to 'Edit', edit_vacation_path(@vacation) %> |
 <%= link_to 'Back', vacations_path %>
+
+</div>

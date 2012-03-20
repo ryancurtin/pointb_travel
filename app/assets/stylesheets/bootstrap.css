@@ -3654,3 +3654,57 @@ input#searchbutton {
     margin-bottom: 10px;
 }
 
+
+
+.vacation {
+	padding: 10px;
+}
+
+.vacation > p {
+	font-size: 24px;
+}
+
+.vacation > h1 {
+		background: #1BE07A;
+		border: 2px solid #000;
+		-webkit-border-radius: 10px;
+		-moz-border-radius-: 10px;
+		border-radius: 10px;
+		margin-bottom: 20px;
+}
+
+.vacation > .heading {
+	border: 2px solid #000;
+	
+}
+
+.vacimage {
+	width: 45%;
+	margin: 5px;
+	padding: 10px 10px 25px 10px;
+	background: #eee;
+	border: 1px solid #fff;
+	-moz-box-shadow: 0px 2px 15px #333;
+    float: right;
+}
+
+#vacationdesc > p {
+	font-size: 16px;
+	line-height: 20px;
+}
+
+#vacationdesc {
+    width: 98%;
+	margin: 3px;
+	}
+
+#vacationdesc > h2 {
+	background: #00FF00;
+	width: 35%;
+}
+
+
+
+
+
+
