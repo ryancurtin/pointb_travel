@@ -3741,7 +3741,7 @@ input#searchbutton {
 	width: 100%;
 }
 
-#vacheading > img {
+figure {
 	width: 200px;
 	float: left;
 	margin: 5px;
@@ -3749,7 +3749,14 @@ input#searchbutton {
 	background: #eee;
 	border: 1px solid #fff;
 	-moz-box-shadow: 0px 2px 15px #333;
+	text-align: center;
 	}
+
+figcaption {
+	font-weight: bold;
+	font-size: 24px;
+	text-align: center;
+}
 	
 #vacheading > img:after {
 	content: attr(title);

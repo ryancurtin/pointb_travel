@@ -1,10 +1,12 @@
 <div class="paddedcontent">
 <div id="vacheading">
 <% if @user %>
+<figure>
 <%= image_tag "#{@user.photo.gsub('square', 'large')}", :title => "Hello" if @user.photo %>
+<figcaption><%= @user.name %></figcaption>
+</figure>
 <% end %>
-<h1><%= @user.name %> |
-Here's Where I've Been:</h1>
+<h1>Here's Where I've Been:</h1>
 </div>
 <div class="clear"></div>
 <hr />
