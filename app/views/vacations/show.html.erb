@@ -3,13 +3,13 @@
 
 <!--Want to add in webkit fonts to make it look better and CSS to style images to look like polaroids -->
 
-<h1><%= @vacation.user.name %>'s Vacation to <%= @vacation.destination %></h1>
-<div class="vacimage"><%= image_tag(@vacation.image) if @vacation.image? %></div>
-
+<h1><%= @vacation.user.name %>'s Vacation to <span class="whitebold"><%= @vacation.destination %></span></h1>
+<hr />
+<%= image_tag(@vacation.image) if @vacation.image? %>
 <div id="vacationdesc">
 <h2>Here's What I Did:</h2>
 <p><%= @vacation.description %></p>
-  <h2>The Details:</h2>
+  <h2>The Highlights:</h2>
   <% @vacation.highlights.each do |x| %>
    
     <h3><%= x.title %></h3>
@@ -23,3 +23,5 @@
 <%= link_to 'Back', vacations_path %>
 
 </div>
+
+<div class="clear"></div>

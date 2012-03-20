@@ -1,15 +1,29 @@
 <div class="paddedcontent">
+<div id="vacheading">
+<% if @user %>
+<%= image_tag "#{@user.photo.gsub('square', 'large')}", :title => "Hello" if @user.photo %>
+<% end %>
+<h1><%= @user.name %> |
+Here's Where I've Been:</h1>
+</div>
+<div class="clear"></div>
+<hr />
+<div id="vacationdesc">
+  
+	<% @user.vacations.each do |vac| %>
+	    <div class="vacbubble">
+        <%= image_tag(vac.image) if vac.image? %>
+		<h2><%= link_to "#{vac.destination}", vacation_path(vac) %></h2>
+		<p><%= vac.description %></p>
+		</div>
+		<hr />
+		<div class="clear"></div>
+		<% end %>
 
-<h1><% if @user %>
-	  <%= @user.email %><br />
-	  <%= @user.name %><br />
-      <%= image_tag "#{@user.photo.gsub('square', 'large')}" if @user.photo %>
-	<% end %>
-</h1>
 
-<h3>Vacations:</h3>
+<p><%= button_to 'Add A New Vacation', new_vacation_path(:user_id => @user.id), :method => "get" %></p>
 
+</div>
 
-<p>Add Your Vacation: <%= link_to 'New Vacation', new_vacation_path(:user_id => @user.id) %></p>
 
 </div>
