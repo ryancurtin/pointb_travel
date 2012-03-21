@@ -2,7 +2,7 @@
 
 <%= form_for(@vacation) do |f| %>
   <% if @vacation.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="alert">
       <h2><%= pluralize(@vacation.errors.count, "error") %> prohibited this vacation from being saved:</h2>
 
       <ul>

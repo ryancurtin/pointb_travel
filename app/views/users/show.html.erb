@@ -1,9 +1,11 @@
+<!--Considering a Twitter feed and adding the ability to 'follow' cities / destinations -->
+
 <div class="paddedcontent">
 <div id="vacheading">
 <% if @user %>
 <figure>
-<%= image_tag "#{@user.photo.gsub('square', 'large')}", :title => "Hello" if @user.photo %>
-<figcaption><%= @user.name %></figcaption>
+<%= image_tag "#{@user.photo.gsub('square', 'large')}" if @user.photo %>
+<figcaption><%= link_to @user.name, @user.url %></figcaption>
 </figure>
 <% end %>
 <h1>Here's Where I've Been:</h1>
@@ -18,6 +20,7 @@
 		<h2><%= link_to "#{vac.destination}", vacation_path(vac) %></h2>
 		<p><%= vac.description %></p>
 		</div>
+		<div class="clear"></div>
 		<hr />
 		<div class="clear"></div>
 		<% end %>

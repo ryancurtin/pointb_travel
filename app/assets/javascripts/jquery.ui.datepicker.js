@@ -1,5 +1,5 @@
 /*
- * jQuery UI Datepicker 1.8.17
+ * jQuery UI Datepicker 1.8.18
  *
  * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -12,7 +12,7 @@
  */
 (function( $, undefined ) {
 
-$.extend($.ui, { datepicker: { version: "1.8.17" } });
+$.extend($.ui, { datepicker: { version: "1.8.18" } });
 
 var PROP_NAME = 'datepicker';
 var dpuuid = new Date().getTime();
@@ -52,7 +52,7 @@ function Datepicker() {
 		dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], // For formatting
 		dayNamesMin: ['Su','Mo','Tu','We','Th','Fr','Sa'], // Column headings for days starting at Sunday
 		weekHeader: 'Wk', // Column header for week of the year
-		dateFormat: 'yy-mm-dd', // See format options on parseDate
+		dateFormat: 'mm/dd/yy', // See format options on parseDate
 		firstDay: 0, // The first day of the week, Sun = 0, Mon = 1, ...
 		isRTL: false, // True if right-to-left language, false if left-to-right
 		showMonthAfterYear: false, // True if the year select precedes month, false for month then year
@@ -233,7 +233,10 @@ $.extend(Datepicker.prototype, {
 			inst.trigger.click(function() {
 				if ($.datepicker._datepickerShowing && $.datepicker._lastInput == input[0])
 					$.datepicker._hideDatepicker();
-				else
+				else if ($.datepicker._datepickerShowing && $.datepicker._lastInput != input[0]) {
+					$.datepicker._hideDatepicker(); 
+					$.datepicker._showDatepicker(input[0]);
+				} else
 					$.datepicker._showDatepicker(input[0]);
 				return false;
 			});
@@ -842,7 +845,7 @@ $.extend(Datepicker.prototype, {
 		if ( ( ( $target[0].id != $.datepicker._mainDivId &&
 				$target.parents('#' + $.datepicker._mainDivId).length == 0 &&
 				!$target.hasClass($.datepicker.markerClassName) &&
-				!$target.hasClass($.datepicker._triggerClass) &&
+				!$target.closest("." + $.datepicker._triggerClass).length &&
 				$.datepicker._datepickerShowing && !($.datepicker._inDialog && $.blockUI) ) ) ||
 			( $target.hasClass($.datepicker.markerClassName) && $.datepicker._curInst != inst ) )
 			$.datepicker._hideDatepicker();
@@ -1814,7 +1817,7 @@ $.fn.datepicker = function(options){
 $.datepicker = new Datepicker(); // singleton instance
 $.datepicker.initialized = false;
 $.datepicker.uuid = new Date().getTime();
-$.datepicker.version = "1.8.17";
+$.datepicker.version = "1.8.18";
 
 // Workaround for #4055
 // Add another global to avoid noConflict issues with inline event handlers

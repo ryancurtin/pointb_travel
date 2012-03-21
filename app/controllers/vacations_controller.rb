@@ -22,7 +22,7 @@ class VacationsController < ApplicationController
   # GET /vacations/1.json
   def show
     @vacation = Vacation.find(params[:id])
-
+    @users = User.joins(:vacations).where('vacations.destination' => "#{@vacation.destination}")
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @vacation }

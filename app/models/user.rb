@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
         user.email = data["email"]
         user.photo = data["info"]["image"]
+        user.url = data["info"]["url"]["Facebook"].to_s
       end
     end
   end

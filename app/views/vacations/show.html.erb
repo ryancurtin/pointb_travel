@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<p id="notice" class="alert"><%= notice %></p>
 <div class="vacation">
 
 <!--Want to add in webkit fonts to make it look better and CSS to style images to look like polaroids -->
@@ -8,6 +8,7 @@
 <%= image_tag(@vacation.image) if @vacation.image? %>
 <div id="vacationdesc">
 <h2>Here's What I Did:</h2>
+
 <p><%= @vacation.description %></p>
   <h2>The Highlights:</h2>
   <% @vacation.highlights.each do |x| %>
@@ -18,6 +19,18 @@
   <% end %>
 </div>
 
+<!--Add authorization to edit -->
+
+
+<h2>See Who Else Went to <%= @vacation.destination %></h2>
+<% @users.each do |user| %>
+  <% if @vacation.user == user %>
+    <% next %>
+  <% else %>
+  <%= link_to "#{user.name}", user.url %>
+  <%= image_tag(user.photo) if user.photo %>
+  <% end %>
+<% end %>
 
 <%= link_to 'Edit', edit_vacation_path(@vacation) %> |
 <%= link_to 'Back', vacations_path %>
