@@ -193,8 +193,9 @@ a:hover {
 
 .maincontainer {
 	background: #f8f8ff;
-	margin-top: -17px;
+	margin-top: -18px;
     box-shadow:2px 0px 3px #A8A8A8, -2px 0px 5px #A8A8A8;
+    border-bottom: 0;
 }
 
 .offset1 {
@@ -2885,7 +2886,6 @@ button.btn.small, input[type="submit"].btn.small {
   padding: 15px;
   margin-bottom: 0;
   background-color: #f5f5f5;
-  border-top: 1px solid #ddd;
   -webkit-border-radius: 0 0 6px 6px;
   -moz-border-radius: 0 0 6px 6px;
   border-radius: 0 0 6px 6px;
@@ -3438,13 +3438,24 @@ a.thumbnail:hover {
 
 /*--- Custom ----*/
 .footer {
-  background-color: #f4f4f4;
-  -webkit-border-radius: 0 0 6px 6px;
-  -moz-border-radius: 0 0 6px 6px;
-  border-radius: 0 0 6px 6px;
-  box-shadow:2px 0px 3px #A8A8A8, -2px 0px 3px #A8A8A8;
-  border-top: 2px solid #ddd;
+  background: url('farmer.png');
+  height: 100px;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 18px;
 }
+
+.footer a {
+	padding: 20px;
+	margin: 10px;
+}
+
+.footer p {
+	padding: 20px;
+	font-size: 18px;
+}
+
+
 
 
 #footer {
@@ -3454,37 +3465,45 @@ a.thumbnail:hover {
 }
 
 
-
-
 .search {
-  background: url('brugges1.jpg') no-repeat;  
+  background: url('dublinbridgeopt.jpg') no-repeat;  
   text-align: center;
-  height: 500px;
+  height: 700px;
   color: white;
   position: relative;
   width: 100%;
+}
 
+.featuredsearch > h1 {
+  margin-top: 20px;
 }
 
 .search h1 {
-	color: white;
-	background: black;
+	color: #fff;
+	background: #000;
 }
 
 
-
-
-
 #searchtext {
+	width: 94%;
 	position: absolute;
 	padding: 0 25px;
 	bottom: 0;
 	color: white;
     background: black;
+    text-align: center;
 }
 
-#searchheading {
-	padding-top: 50px;
+.searchheading {
+	padding-top: 10px;
+
+}
+
+.searchheading > p {
+	background: #000;
+	color: #fff;
+	font-size: 18px;
+	padding: 10px;
 }
 
 input#search_name {
@@ -3501,6 +3520,7 @@ input#searchbutton {
 	font-size: 36px;
 	color: white;
 	height: 60px;
+	line-height: 60px;
 	width: 200px;
 	border-radius: 5px;
 	background: #70bf32;
@@ -3765,14 +3785,35 @@ figure {
 	padding: 10px 10px 25px 10px;
 	background: #eee;
 	border: 1px solid #fff;
+	-box-shadow: 0px 2px 15px #333;
+	-webkit-box-shadow: 0px 2px 15px #333;
 	-moz-box-shadow: 0px 2px 15px #333;
 	text-align: center;
 	}
+	
+	
+.search figure {
+		width: 200px;
+		float: left;
+		margin: 5px;
+		padding: 10px 10px 25px 10px;
+        background: rgba(255, 255, 255, 0.6);
+		-webkit-box-shadow: 0px 2px 15px #333;
+		-box-shadow: 0px 2px 15px #333;
+		-moz-box-shadow: 0px 2px 15px #333;
+		text-align: center;
+		}
 
 figcaption {
 	font-weight: bold;
 	font-size: 24px;
 	text-align: center;
+	color: #000;
+}
+
+.searchimages {
+	width: 50%;
+	margin: 0 auto;
 }
 	
 #vacheading > img:after {
@@ -3784,13 +3825,7 @@ figcaption {
 	clear: both;
 }
 
-.whitebold {
-	color: #fff;
-	font-weight: bold;
-	letter-spacing: -1px;
-	background: #000;
-	
-}
+
 
 
 

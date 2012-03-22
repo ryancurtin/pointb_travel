@@ -1,4 +1,3 @@
-<!-- <div class="container"> -->
 
 	<script>
 	$('#country').live('change',function() {
@@ -13,14 +12,16 @@
 	})
 	</script>
 
-   <div class="search">
+<div class="search">
 
-  <div id="searchheading">
-   <h1>Where do you want to go?</h1><br /><br /><br />
-
-   <form method="get" action="/search/results" class="well">
+   <div class="searchheading">
+     <h1>Stay Anywhere in the World - For Less!</h1>
+     <p>Where do you want to go?</p>
+     <br />
+   </div>
+     <form method="get" action="/search/results" class="well">
    
-   <div class="row">
+     <div class="row">
      <div class="span4">
      <label for="country" id="frontpage">Country: </label>
      <select name="country" id="country" class="frontlist">
@@ -39,7 +40,7 @@
      </div>
    </div>
 
-   <script>
+     <script>
    $(function() {
      $( "#date" ).datepicker({ showButtonPanel: true }, { nextText: ">" });
 	 });
@@ -48,26 +49,34 @@
     <div class="span4">
       <label for="date" id="frontpage">Start Date: </label>
       <input name="date" id="date" class="span2" />
-   </div>
+    </div>
 
-   <div class="span4">
+    <div class="span4">
      <label for="nights" id="frontpage">Number of Nights: </label>
      <input name="nights" class="span1" id="nights" value="3" />
-   </div>
+    </div>
 
   </div>
 
    <br />
 
-   <input class="btn-primary" id="frontbutton" name="searchbutton" type="submit" value="Let's Go!">
+   <input class="btn-primary" id="frontbutton" name="searchbutton" type="submit" value="Let's Go!" />
    </form>
+     <div class="featuredsearch">
+       <h1>See Where Others Are Going:</h1>
+	     <div class="searchimages">
+	     <% @vacations.each do |vac| %>
+           <figure>
+	         <%= link_to image_tag(vac.image), vacation_path(vac) %>
+	         <figcaption><%= vac.destination %></figcaption>
+	       </figure>
+	     <% end %>
+	     </div>
+    </div>
+    <div class="clear">
 
-   </div>
-
-   <div id="searchtext">
-	<!--Need to add the list of top vacations-->
-   <p><span class="label label-important">NEW</span> Point B is a new service making travel as easy as A to B.  We're working on getting up and running, and we'll be live on March 28th.  You'll be able to book hostels and hotels in hundreds of international destinations at the absolute <em>lowest</em> prices.
-	</p>
-   </div>
+     <div id="searchtext">
+	   <!--Need to add the list of top vacations-->
+       <p>Connect with <%= link_to "Facebook", user_omniauth_authorize_path(:facebook) %> to see more user vacations and add your own!</p>
+     </div>
 </div>
-<!-- </div> -->

@@ -2,8 +2,7 @@ class PagesController < ApplicationController
   def home
     @title = "Home"
     @countries = Country.all
-    
-    
+    @vacations = Vacation.all[0..2]
     
   end
 
