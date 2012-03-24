@@ -1,7 +1,7 @@
 class VacationsController < ApplicationController
   # GET /vacations
   # GET /vacations.json
-  before_filter :logged_in?
+  before_filter :logged_in?, :except => :index
   
   def logged_in?
     if current_user.nil?
@@ -10,11 +10,14 @@ class VacationsController < ApplicationController
   end
   
   def index
-    @vacations = Vacation.all
+    @countries = Country.all
+    @vacations = Vacation.where(:destination => "#{params[:city]}")
+
+    # flash[:notice] = "Please select a country and city"
 
     respond_to do |format|
+      format.js
       format.html # index.html.erb
-      format.json { render json: @vacations }
     end
   end
 

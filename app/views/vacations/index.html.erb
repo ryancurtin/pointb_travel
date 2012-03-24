@@ -1,31 +1,42 @@
 <!--Add top destination by number of vacations -->
 
+<script>
+$('#country').live('change',function() {
+	country_name = $('#country').val();
+	$.getJSON('/cities?country='+country_name, function(data) {
+	   $('#city').empty();
+	   $('#city').append('<option value="0">Please select a city</option>');
+	   $.each(data, function(key, value) {
+		    $('#city').append('<option value="' + value.name +'">'+  value.name +'</option>');
+	    });
+	});		
+})
+</script>
+<%= form_tag vacations_path, :method => 'get' do %>
+<div class="row">
+	<div class="span4">
+		<label for="country" id="frontpage">Country: </label>
+		<select name="country" id="country" class="frontlist">
+			<option value="0" selected="selected">Please select a country</option>
+			<% @countries.each do |country| %>	
+			<option value="<%= country.name %>"><%= country.name %></option>
+			<% end %>
+		</select>
+	</div>
 
-
-<h1>Listing vacations</h1>
-
-<table>
-  <tr>
-    <th>Destination</th>
-    <th>Description</th>
-    <th>User</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @vacations.each do |vacation| %>
-  <tr>
-    <td><%= vacation.destination %></td>
-    <td><%= vacation.description %></td>
-    <td><%= vacation.user_id %></td>
-    <td><%= link_to 'Show', vacation %></td>
-    <td><%= link_to 'Edit', edit_vacation_path(vacation) %></td>
-    <td><%= link_to 'Destroy', vacation, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+	<div class="span4">
+		<label for="city" id="frontpage">City: </label>
+		<select name="city" id="city" class="frontlist">
+			<option value="0" selected="selected" class="frontlist">Please select a city</option>
+		</select>
+	</div>
+</div>
+<%= submit_tag "Find Vacations", :class => "vacationbutton" %>
 <% end %>
-</table>
+<h1>See Where Others are Going:</h1>
+<div id="results">
+<%= render 'newvac', :layout => false %>
 
+</div>
 <br />
 
-<%= link_to 'New Vacation', new_vacation_path %>

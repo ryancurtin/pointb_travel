@@ -26,6 +26,17 @@
 
 <script>
    
+    $("#guests").live('click', function() { 
+	  guests = $(this).val();
+	  cost = $(this).parent().text();
+	  totalcost = (parseFloat(cost.replace("$", "")) * guests).toFixed(2);
+	  $("#guestsbottom").empty();
+	  $("#totalconfirm").empty();
+	  $("#guestsbottom").append(guests);
+	  $("#totalconfirm").append(totalcost);
+	  $("#confirmation").show();
+	});
+
 	$("input:radio[name=roomcode]").live('click', function() {
 	  guests = $('#guests').val();
 	  cost = $(this).parent().text();

@@ -1,11 +1,24 @@
 # encoding: utf-8
 class SearchController < ApplicationController
+    
+  before_filter :validate_results, :only => :results
+    
+  def validate_results
+    if params[:city] == '0' || params[:country == '0']
+       flash[:notice] = "Please select a country and city"
+       redirect_to root_url
+    elsif params[:nights].class != Integer || params[:nights] > 14 || params[:nights] < 1
+       flash[:notice] = "Please select a valid number of nights (1-14)"
+       redirect_to root_url
+    end  
+
+  end
+
   
-  # :before_filter for validation of results form
-  
+    
   def results
     if params[:city] == '0' || params[:country == '0']
-       flash[:error] = "Please select a country"
+       flash[:notice] = "Please select a country and city"
        redirect_to root_url
     else
        @city = params[:city]
@@ -14,14 +27,14 @@ class SearchController < ApplicationController
          @country.gsub!(" ", "+") if @country.include?(" ")
          @date = params[:date]
          @nights = params[:nights]
-    end
+    
     
     @url = "https://affiliate.xsapi.webresint.com/1.1/propertylocationsearch.json?consumer_key=rankandmile.com&consumer_signature=5a50436e660bee116ec0bbcff7ef018aa1637cab&Country=#{@country}&City=#{@city}&DateStart=#{@date}&NumNights=#{@nights}"
     @searchresults = HTTParty.get(@url).parsed_response
     session[:user] = {"date" => params[:date], "nights" => params[:nights]}
   
     @paginatedresults = Kaminari.paginate_array(@searchresults['result']['Properties']).page(params[:page]).per(10)
-  
+    end
   end
   
   def show
