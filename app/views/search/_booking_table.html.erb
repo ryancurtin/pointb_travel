@@ -33,7 +33,6 @@
 	  $("#guestsbottom").empty();
 	  $("#totalconfirm").empty();
 	  $("#guestsbottom").append(guests);
-	  $("#totalconfirm").append(totalcost);
 	  $("#confirmation").show();
 	});
 
@@ -109,10 +108,11 @@
 <% i += 1 %>
 <% end %>
 </table>
+<br />
 <div id="confirmation" style="display:none;">
-You've selected a room for <%= @newnights %> nights with <span id="guestsbottom"></span> guests<br />
-Your total is:  $<span id="totalconfirm"></span>, click below to proceed.
+<h3>You've selected a room for <%= @newnights %> nights with <span id="guestsbottom"></span> guests</h3><br />
+<h3>Your total is:  $<span id="totalconfirm"></span>, click below to proceed.</h3>
 </div>
-<input id="innerbutton" class="btn-primary" name="hotelbutton" type="submit" value="Book Now!" />
+<input id="innerbutton" class="btn-success" id="frontbutton" name="hotelbutton" type="submit" value="Proceed to Payment" />
 
 </form>

@@ -25,8 +25,8 @@
 		<div class="clear"></div>
 		<% end %>
 
-
-<p><%= button_to 'Add A New Vacation', new_vacation_path(:user_id => @user.id), :method => "get" %></p>
+<p><%= button_to 'See Where Others Are Going', vacations_path, :method => "get", :class => "btn-success btn-large" %></p>
+<p><%= button_to 'Add A New Vacation', new_vacation_path(:user_id => @user.id), :method => "get", :class => "btn-primary btn-large" %></p>
 
 </div>
 

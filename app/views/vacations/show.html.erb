@@ -2,39 +2,57 @@
 <div class="vacation">
 
 <!--Want to add in webkit fonts to make it look better and CSS to style images to look like polaroids -->
+<script>
+	$(function() {
+		$( "#tabs" ).tabs();
+	});
+</script>
 
-<h1><%= @vacation.user.name %>'s Vacation to <span class="whitebold"><%= @vacation.destination %></span></h1>
-<hr />
-<%= image_tag(@vacation.image) if @vacation.image? %>
-<div id="vacationdesc">
-<h2>Here's What I Did:</h2>
+  <h1><%= @vacation.user.name %>'s Vacation to <span class="whitebold"><%= @vacation.destination %></span></h1>
+  <div class="vacationimg"><%= image_tag(@vacation.image) if @vacation.image? %></div>
+  <div class="clear"></div>
+  <hr />
+  
 
-<p><%= @vacation.description %></p>
-  <h2>The Highlights:</h2>
-  <% @vacation.highlights.each do |x| %>
+  <div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">Description</a></li>
+		<li><a href="#tabs-2">See Who Else Went</a></li>
+	</ul>
+	<div id="tabs-1">
+		<div id="vacationdesc">
+		<h2>Here's What I Did:</h2>
+
+		<p><%= @vacation.description %></p>
+		  <h2>The Highlights:</h2>
+		  <% @vacation.highlights.each do |x| %>
    
-    <h3><%= x.title %></h3>
-    <p><%= x.description %></p>
+		    <h3><%= x.title %></h3>
+		    <p><%= x.description %></p>
    
-  <% end %>
-</div>
-
+		  <% end %>
+		</div>
+	</div>
 <!--Add authorization to edit -->
 
-
-<h2>See Who Else Went to <%= @vacation.destination %></h2>
-<% @users.each do |user| %>
-  <% if @vacation.user == user %>
-    <% next %>
-  <% else %>
-  <%= link_to "#{user.name}", user.url %>
-  <%= image_tag(user.photo) if user.photo %>
-  <% end %>
-<% end %>
-
-<%= link_to 'Edit', edit_vacation_path(@vacation) %> |
-<%= link_to 'Back', vacations_path %>
-
+	<div id="tabs-2">
+		<h2>Other's Who Have Been To <%= @vacation.destination %>:</h2>
+		 <div class="searchimages">
+		 <% @users.each do |user| %>
+		   <% if @vacation.user == user %>
+		     <% next %>
+		   <% else %>
+	         <figure>
+		       <%= link_to image_tag(user.photo) if user.photo %>
+		       <figcaption><%= link_to user.name, user_path(user) %></figcaption>
+		     </figure>
+		     <div class="clear"></div>
+		   <% end %>
+		 <% end %>
+		 </div>
+	</div>
+  </div>
+<%= link_to 'Edit', edit_vacation_path(@vacation) %>
 </div>
 
 <div class="clear"></div>

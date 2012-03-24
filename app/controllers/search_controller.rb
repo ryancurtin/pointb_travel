@@ -7,7 +7,7 @@ class SearchController < ApplicationController
     if params[:city] == '0' || params[:country == '0']
        flash[:notice] = "Please select a country and city"
        redirect_to root_url
-    elsif params[:nights].class != Integer || params[:nights] > 14 || params[:nights] < 1
+    elsif params[:nights].to_i > 14 || params[:nights].to_i < 1 || params[:nights].include?(".")
        flash[:notice] = "Please select a valid number of nights (1-14)"
        redirect_to root_url
     end  
@@ -17,16 +17,12 @@ class SearchController < ApplicationController
   
     
   def results
-    if params[:city] == '0' || params[:country == '0']
-       flash[:notice] = "Please select a country and city"
-       redirect_to root_url
-    else
        @city = params[:city]
          @city.gsub!(" ", "+") if @city.include?(" ")
        @country = params[:country]
          @country.gsub!(" ", "+") if @country.include?(" ")
          @date = params[:date]
-         @nights = params[:nights]
+         @nights = params[:nights].to_i
     
     
     @url = "https://affiliate.xsapi.webresint.com/1.1/propertylocationsearch.json?consumer_key=rankandmile.com&consumer_signature=5a50436e660bee116ec0bbcff7ef018aa1637cab&Country=#{@country}&City=#{@city}&DateStart=#{@date}&NumNights=#{@nights}"
@@ -34,7 +30,6 @@ class SearchController < ApplicationController
     session[:user] = {"date" => params[:date], "nights" => params[:nights]}
   
     @paginatedresults = Kaminari.paginate_array(@searchresults['result']['Properties']).page(params[:page]).per(10)
-    end
   end
   
   def show

@@ -10,9 +10,8 @@
 
 <br />
 
-<!--Note that I need to edit how the terms and conditions are displayed -->
 <div id="fineprint">
-<%= @bookingdetails['result']['thingsToNote'] %>
+<%= @bookingdetails['result']['thingsToNote'].gsub("hostelworld.com", "Our partner site, hostelworld.com") %>
 
 
 

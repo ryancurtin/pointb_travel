@@ -1,4 +1,9 @@
-<% @vacations.each do |vacation| %>
-  <%= vacation.destination %><br />
-  <%= vacation.user.name %>
+<% @vacations.each do |vac| %>
+<div class="vacbubble">
+<%= image_tag(vac.image) if vac.image? %>
+<h2><%= link_to "#{vac.destination}", vacation_path(vac) %></h2>
+<p><%= vac.description %></p>
+</div>
+<div class="clear"></div>
 <% end %>
+

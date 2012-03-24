@@ -1,5 +1,18 @@
 <!--Add a city selector -->
-<div class="paddedcontend">
+
+<script>
+  $(document).ready(function() {
+    $(".highlights").children().hide();
+    i = 0
+  $('#add-another').live('click',function() {
+    $(".highlights > div:nth-child(" + i + ")").show();
+    i++
+  });
+});
+</script>
+
+
+
 <%= form_for(@vacation) do |f| %>
   <% if @vacation.errors.any? %>
     <div id="error_explanation" class="alert">
@@ -14,32 +27,38 @@
   <% end %>
 
     <%= f.hidden_field :user_id %>
+  <br />
   <div class="field">
-    <%= f.label :destination %><br />
+    <%= f.label :destination, "What city did you visit?" %><br />
     <%= f.text_field :destination, :maxlength => 100 %>
   </div>
   <div class="field">
+	<h3>Add an Image<br /></h3>
     <%= f.file_field :image %>
   </div>
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_area :description, :rows => 6, :columns => 25 %>
+    <%= f.text_area :description, :rows => 6, :class => "span6" %>
   </div>
 
-
+  <hr />
+  <!-- Add styling to make it look like a button -->
+  <%= button_to "Add a Highlight", "#highlightlink", :id => "add-another", :name=> "highlightlink", :method => :get, :class => "btn-success btn-large" %>
+  <br /><br />
+  <div class="highlights">
     <%= f.fields_for :highlights do |builder| %>
-  <p>
+  <div class="highlight">
     <%= builder.label :title, "Highlight" %><br />
     <%= builder.text_field :title, :maxlength => 100 %>
   </p>
   <p>
     <%= builder.label :description, "What you did:" %><br />
-    <%= builder.text_area :description, :rows => 6, :columns => 25 %>
+    <%= builder.text_area :description, :rows => 6, :class => "span6" %>
   </p>
+  </div>
   <% end %>
-
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
-</div>

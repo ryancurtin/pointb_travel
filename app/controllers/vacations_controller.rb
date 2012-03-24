@@ -12,7 +12,7 @@ class VacationsController < ApplicationController
   def index
     @countries = Country.all
     @vacations = Vacation.where(:destination => "#{params[:city]}")
-
+    @vacationsex = Vacation.all[0..2]
     # flash[:notice] = "Please select a country and city"
 
     respond_to do |format|
@@ -36,7 +36,7 @@ class VacationsController < ApplicationController
   # GET /vacations/new.json
   def new
     @vacation = Vacation.new
-    3.times { @vacation.highlights.build }
+    5.times {@vacation.highlights.build}
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @vacation }
