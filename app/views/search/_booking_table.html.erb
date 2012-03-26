@@ -68,6 +68,8 @@
     	});
 	});
 </script>
+<h4>Note that availability is displayed in the following format:  <strong>Number of Beds | Price Per Night</strong></h4>
+<br />
 <table>
   <thead>
 	<th>Room Type</th>
@@ -96,10 +98,17 @@
 	    <% z += 1 %>
       <% else %>
         <td class="bookingcell"> X </td>
-        <% z += 1%>
+        <% z += 1 %>
+        <% redo %>
       <% end %>
-        <!--Moved redo below this end statement --><% redo %>
+    <% end %>
+    <% if room['availability'].keys.last != @bookingdetails['result']['availableDates'].last %>
+      <% x = (Date.parse(@bookingdetails['result']['availableDates'].last) - Date.parse(room['availability'].keys.last)).to_i %>
+      <% x.times do %>
+        <td class="bookingcell"> X </td>
       <% end %>
+    <% end %>
+
     <td class="costcell" data-cost="<%= @totalcost %>">
     <% @totalcost = number_to_currency(@price * @bookingdetails['result']['availableDates'].length) %><%= @totalcost %>
     <input type="radio" id="roomselect" name="roomcode" value=<%="#{room['code']}" %> />
@@ -107,8 +116,11 @@
   </tr>
 <% i += 1 %>
 <% end %>
+
 </table>
+
 <br />
+
 <div id="confirmation" style="display:none;">
 <h3>You've selected a room for <%= @newnights %> nights with <span id="guestsbottom"></span> guests</h3><br />
 <h3>Your total is:  $<span id="totalconfirm"></span>, click below to proceed.</h3>

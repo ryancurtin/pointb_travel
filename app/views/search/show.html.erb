@@ -5,6 +5,7 @@
 <h3><%= @hoteldetails['result']['address1'] %>, <%= @hoteldetails['result']['city'] %>, <%= @hoteldetails['result']['country'] %></h3>
 <p><strong>Email:</strong> <%= mail_to "#{@hoteldetails['result']['email']}" %></p>
 <p><strong>Phone:</strong> <%= @hoteldetails['result']['tel'] %></p>
+<h2><%= button_to "See Availability", "/#{@hotelnumber}/booking", :method => :get, :class => "btn-primary btn-large" %></h2>
 <hr />
 </div>
 <div id="imagestop">
@@ -54,5 +55,5 @@
 
 <!--Make sure to add the list of features at each facility! -->
 <br />
-<h2><%= button_to "See Availability", "/#{@hotelnumber}/booking", :method => :get, :class => "btn-primary", :id => "frontbutton" %></h2>
+
 </div>

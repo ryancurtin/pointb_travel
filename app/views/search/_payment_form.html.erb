@@ -25,6 +25,7 @@ $(document).ready(function () {
 
 
 <h3>Due Upon Arrival at Destination: <%= number_to_currency(@paymentinfo['result']['AmountDue']['USD']['value']) %> </h3>
+<br /><br />
 
 <h3>Customer Information</h3>
   <form method="post" id="paymentdetails" action="/<%= @hotelname %>/confirmation">
@@ -71,6 +72,8 @@ $(document).ready(function () {
 	    <% end %>
 	    </select>        
 	</div>
+  </div>
+  <div class="row-fluid">
 	<div class="span4">
     <label for="customername">Name on Card:</label>
       <p><input name="customername" /></p>
