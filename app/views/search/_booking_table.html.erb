@@ -97,9 +97,9 @@
       <% else %>
         <td class="bookingcell"> X </td>
         <% z += 1%>
-        <% redo %>
       <% end %>
-    <% end %>
+        <!--Moved redo below this end statement --><% redo %>
+      <% end %>
     <td class="costcell" data-cost="<%= @totalcost %>">
     <% @totalcost = number_to_currency(@price * @bookingdetails['result']['availableDates'].length) %><%= @totalcost %>
     <input type="radio" id="roomselect" name="roomcode" value=<%="#{room['code']}" %> />

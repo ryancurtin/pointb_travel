@@ -25,7 +25,7 @@ class SearchController < ApplicationController
          @nights = params[:nights].to_i
     
     
-    @url = "https://affiliate.xsapi.webresint.com/1.1/propertylocationsearch.json?consumer_key=rankandmile.com&consumer_signature=5a50436e660bee116ec0bbcff7ef018aa1637cab&Country=#{@country}&City=#{@city}&DateStart=#{@date}&NumNights=#{@nights}"
+    @url = "https://api.instacasa.com/1.1/propertylocationsearch.json?consumer_key=rankandmile.com&consumer_signature=5a50436e660bee116ec0bbcff7ef018aa1637cab&Country=#{@country}&City=#{@city}&DateStart=#{@date}&NumNights=#{@nights}"
     @searchresults = HTTParty.get(@url).parsed_response
     session[:user] = {"date" => params[:date], "nights" => params[:nights]}
   
@@ -34,7 +34,7 @@ class SearchController < ApplicationController
   
   def show
     @hotelnumber = params[:id]
-    @detailsurl = "https://affiliate.xsapi.webresint.com/1.1/propertyinformation.json?consumer_key=rankandmile.com&consumer_signature=5a50436e660bee116ec0bbcff7ef018aa1637cab&PropertyNumber=#{@hotelnumber}"
+    @detailsurl = "https://api.instacasa.com/1.1/propertyinformation.json?consumer_key=rankandmile.com&consumer_signature=5a50436e660bee116ec0bbcff7ef018aa1637cab&PropertyNumber=#{@hotelnumber}"
     @hoteldetails = HTTParty.get(@detailsurl)
     @date = session[:user]['date']
     @nights = session[:user]['nights']
@@ -50,7 +50,7 @@ class SearchController < ApplicationController
     @hotelnumber = params[:id]
     @date = session[:user]['date']
     @nights = session[:user]['nights']
-    @bookingurl = "https://affiliate.xsapi.webresint.com/1.1/propertybookinginformation.json?TestMode=1&consumer_key=rankandmile.com&consumer_signature=5a50436e660bee116ec0bbcff7ef018aa1637cab&&Currency=USD&PropertyNumber=#{@hotelnumber}&Language=English&DateStart=#{@date}&NumNights=#{@nights}"
+    @bookingurl = "https://api.instacasa.com/1.1/propertybookinginformation.json?TestMode=1&consumer_key=rankandmile.com&consumer_signature=5a50436e660bee116ec0bbcff7ef018aa1637cab&&Currency=USD&PropertyNumber=#{@hotelnumber}&Language=English&DateStart=#{@date}&NumNights=#{@nights}"
     @bookingdetails = HTTParty.get(@bookingurl)
     # Re-assign nights based on how many nights are available (i.e if you picked 3 and only 2 are available, it will auto-adjust)
     @newnights = @bookingdetails['result']['availableDates'].length if @bookingdetails
@@ -73,7 +73,7 @@ class SearchController < ApplicationController
     @date = session[:user]['date']
     @nights = session[:user]['nights']
     @hotelnumber = params[:id]
-    @paymenturl =  "https://affiliate.xsapi.webresint.com/1.1/propertybookingrequest.json?TestMode=1&consumer_key=rankandmile.com&consumer_signature=5a50436e660bee116ec0bbcff7ef018aa1637cab&&Currency=USD&PropertyNumber=#{@hotelnumber}&Language=English&DateStart=#{@date}&NumNights=#{@nights}&RoomPreference1=#{@roomcode}&Persons1=#{@guests}"
+    @paymenturl =  "https://api.instacasa.com/1.1/propertybookingrequest.json?TestMode=1&consumer_key=rankandmile.com&consumer_signature=5a50436e660bee116ec0bbcff7ef018aa1637cab&&Currency=USD&PropertyNumber=#{@hotelnumber}&Language=English&DateStart=#{@date}&NumNights=#{@nights}&RoomPreference1=#{@roomcode}&Persons1=#{@guests}"
     @paymentinfo = HTTParty.get(@paymenturl)
     
     # Need to store BSID returned from booking request for future use

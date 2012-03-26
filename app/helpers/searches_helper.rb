@@ -1,6 +1,6 @@
 module SearchesHelper
   
-  # url = "https://affiliate.xsapi.webresint.com/1.1/citycountrylist.json?consumer_key=rankandmile.com&consumer_signature=5a50436e660bee116ec0bbcff7ef018aa1637cab&country=#{country}"
+  # url = "https://api.instacasa.com.com/1.1/citycountrylist.json?consumer_key=rankandmile.com&consumer_signature=5a50436e660bee116ec0bbcff7ef018aa1637cab&country=#{country}"
   # 
   # countries = ["Albania", "Algeria", "Andorra", "Antigua And Barbuda", "Argentina", "Armenia", 
   # "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bangladesh", "Barbados", 
