@@ -2,13 +2,14 @@
 
 <script>
   $(document).ready(function() {
-    $(".highlights").children().hide();
-    i = 0
-  $('#add-another').live('click',function() {
-    $(".highlights > div:nth-child(" + i + ")").show();
+	$(".highlights").hide();
+	i = 0
+  });
+  $('#addhighlight').live("click", function() {
+    $(".highlights").show();
     i++
   });
-});
+
 </script>
 
 
@@ -42,23 +43,27 @@
   </div>
 
   <hr />
-  <!-- Add styling to make it look like a button -->
-  <%= button_to "Add a Highlight", "#highlightlink", :id => "add-another", :name=> "highlightlink", :method => :get, :class => "btn-success btn-large" %>
+<h3>Add Your Highlights Here (Optional)</h3>
+
+<br />
+<%= link_to "Add Highlights", "#highlightlink", :id => "addhighlight", :class => "btn-success btn-large", :onclick => "" %>
   <br /><br />
-  <div class="highlights">
-    <%= f.fields_for :highlights do |builder| %>
-  <div class="highlight">
-    <%= builder.label :title, "Highlight" %><br />
-    <%= builder.text_field :title, :maxlength => 100 %>
-  </p>
-  <p>
-    <%= builder.label :description, "What you did:" %><br />
-    <%= builder.text_area :description, :rows => 6, :class => "span6" %>
-  </p>
-  </div>
+<div class="highlights">
+  <%= f.fields_for :highlights do |builder| %>
+    <div class="highlight">
+      <p>
+      <%= builder.label :title, "Highlight" %><br />
+      <%= builder.text_field :title, :maxlength => 100 %>
+      </p>
+      <p>
+      <%= builder.label :description, "What you did:" %><br />
+      <%= builder.text_area :description, :rows => 6, :class => "span6" %>
+      </p>
+    </div>
   <% end %>
-  </div>
+</div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "btn-primary btn-large" %>
   </div>
 <% end %>

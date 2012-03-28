@@ -36,7 +36,7 @@ class VacationsController < ApplicationController
   # GET /vacations/new.json
   def new
     @vacation = Vacation.new
-    5.times {@vacation.highlights.build}
+    5.times { @vacation.highlights.build }
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @vacation }

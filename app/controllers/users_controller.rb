@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   
+  http_basic_authenticate_with :name => "admininstacasa", :password => "instacasa##5471", :only => [:index, :destroy, :edit]  
+  
   def index
     @users = User.all
   end
