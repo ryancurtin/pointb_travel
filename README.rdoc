@@ -1,9 +1,11 @@
-Point B Travel
+===Instacasa
 
-My goal with this, my first substantial app in Rails, is to make travel (especially international) easy and inexpensive.  
+My goal with Instacasa, my first full-featured app in Rails, is to make travel (especially international) easy, inexpensive, and social.  
 
 Many people are unaware that staying in hostels is easy and sometimes less than 1/10th the cost of a hotel.  By allowing people to book hostels along with their flights, I'll help people traveling on a budget save some money and see more of the world.  
 
-I'm working on making the interface as simple as possible so users can see all of their options for flights and hotels before breaking out their credit cards.  Ultimately, I'd like to be able to calculate the absolute total cost before requesting payment.  
+I'm working on making the interface as simple as possible so users can see all of their options for flights and hotels before breaking out their credit cards. 
 
-Travel is stressful enough as it is, and cost is often a deciding factor in taking a trip.  By eliminating the friction between users and low-cost travel options, I hope to leave the screw-ups to the airports!
+Lastly, I wanted to make travel social, so I added the ability for users to share their vacations and connect via Facebook.  Eventually, I want to develop a 'Twitter-like' feed for vacation destinations.  Users will be able to see who is going to the cities they want to visit and what they're doing.  
+
+The app is now live at instacasa.com, and I'd appreciate any feedback or even pull requests to clean up the code.  Thanks!
