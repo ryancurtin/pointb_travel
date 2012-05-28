@@ -9,7 +9,7 @@
 <div class="searchimages">
  <% @vacationsex.each do |vac| %>
    <figure>
-     <%= link_to image_tag(vac.image), vacation_path(vac) %>
+     <%#= link_to image_tag(vac.image), vacation_path(vac) %>
      <figcaption><%= vac.destination %></figcaption>
    </figure>
  <% end %>
@@ -19,7 +19,7 @@
 
 <h3>Enter a City:</h3>
 <br />	
-<%= form_tag vacations_path, :method => 'get' do %>
+<%= form_tag vacations_path, :method => 'get', :remote => true do %>
 <div class="row-fluid">
   <input type="text" class="vacationsearch" name="city" id="city"/>
 </div>
